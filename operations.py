@@ -139,7 +139,7 @@ def analyze_player_stats(stats,st,name):
         return
     # if stats['rating_title'] > 7.0:
     # analysis += "- Impressive overall performance.\n"
-    if isgoalie==False and stats['chances_created'] in stats and stats['chances_created'] > 0:
+    if 'chances_created' in stats and stats['chances_created'] > 0:
         analysis += f"- Created {stats['chances_created']} chances\n"
     if 'expected_goals' in stats and stats[
         'expected_goals'] > 0.5:  # Adjust this threshold based on your criteria
