@@ -1,3 +1,4 @@
+os.popen('pip install -r requirements.txt')
 import streamlit as st
 import requests
 import json
