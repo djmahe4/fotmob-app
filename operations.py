@@ -10,6 +10,68 @@ from datetime import date
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 
+def assesment(dict,vs):
+    for x in dict:
+        dict.update({x:performance(dict[x],vs)})
+    return sorted(dict.items(),key=lambda x:x[1])
+def performance(id,vs):
+    response=requests.get(f"https://www.fotmob.com/api/playerData?id={id}")
+    recent=response.json()['recentMatches']
+    total=0
+    matches=0
+    for i in recent:
+        if recent.index(i)<5:
+            total += float(i['ratingProps']['num']) * 0.9
+            matches += 1
+        if i['opponentTeamName']==vs and float(i['ratingProps']['num'])!=0:
+            total+=float(i['ratingProps']['num'])
+            matches+=1
+    try:
+        return total/matches
+    except ZeroDivisionError:
+        return 0
+def match_predict(match_id,st):
+    params = {
+        'matchId': f"{match_id}",
+    }
+    response = requests.get('https://www.fotmob.com/api/matchDetails', params=params)
+    gem = response.json()
+    # print(gem.keys())
+    home = gem['general']['homeTeam']['name']
+    away = gem['general']['awayTeam']['name']
+    print(f"{home} vs {away}")
+    st.write(f"**{home} vs {away}**")
+    # print(gem['content'].keys())
+    a = gem['content']
+    # print(a["lineup"].keys())
+    # print(len(a['lineup']['lineup']))
+    hplayers = {}
+    aplayers = {}
+    # print(a['lineup2']['homeTeam']['starters'])
+    # print(a['lineup2']['homeTeam']['subs'])
+    # print(a['lineup2']['homeTeam']['unavailable'])
+    try:
+        for b in a['lineup']['homeTeam']['starters']:
+            hplayers.update({b['name']: b["id"]})
+    except TypeError or a['lineup']['homeTeam']['starters']==[]:
+        st.write("lineup not available")
+        return
+    #if len(a['lineup']['homeTeam']['subs']) != 0:
+        #for c in a['lineup']['homeTeam']['subs']:
+            #hplayers.update({c['name']: c["id"]})
+    for b in a['lineup']['awayTeam']['starters']:
+        aplayers.update({b['name']: b["id"]})
+    #if len(a['lineup']['awayTeam']['subs']) != 0:
+        #for c in a['lineup']['homeTeam']['subs']:
+            #aplayers.update({c['name']: c["id"]})
+
+    hplayers = assesment(hplayers, away)
+    aplayers = assesment(aplayers, home)
+    print(hplayers)
+    st.write(hplayers)
+    print(aplayers)
+    st.write(aplayers)
+
 def match_id_init():
     x = date.today()
     y = str(x).split('-')
