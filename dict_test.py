@@ -76,6 +76,8 @@ def dataext(id,dic):
         only = stats00['stats']
         print("only", only)
         for key in only:
+            if only[key]['key']=="fantasy_points":
+                continue
             try:
                 l.append({only[key]['key']: only[key]['stat']['value']})
             except KeyError:

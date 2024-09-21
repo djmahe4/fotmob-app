@@ -1,10 +1,6 @@
 import streamlit as st
 import requests
 import json
-import os
-os.popen("pip install matplotlib")
-import time
-time.sleep(10)
 from operations import headtohead,match_details,get_player_stats,plotting,match_id_init
 
 # Streamlit UI

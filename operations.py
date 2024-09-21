@@ -93,9 +93,49 @@ def analyze_player_stats(stats,st,name):
         'expected_goals_on_target_faced'] != 0:  # Adjust this threshold based on your criteria
         analysis += f"- Expected to face few on-target shots ({stats['expected_goals_on_target_faced']} xGOTF)\n"
         isgoalie = True
+
+        if 'saves' in stats and stats['saves'] >= 5:
+            analysis += f"- Had Saves: {stats['saves']}\n"
+        if 'expected_goals_on_target_faced' in stats and stats[
+            'expected_goals_on_target_faced'] > 0.3:  # Adjust this threshold based on your criteria
+            analysis += f"- Expected to face on-target shots ({stats['expected_goals_on_target_faced']} xGOT)\n"
+        if 'goals_prevented' in stats and stats['goals_prevented'] > 0:  # Adjust this threshold based on your criteria
+            analysis += f"- Prevented {stats['goals_prevented']} goals\n"
+        if 'accurate_passes' in stats and stats['accurate_passes'] > 20:
+            analysis += f"- Had Good accurate passing ({stats['accurate_passes']} passes )\n"
+        if 'recoveries' in stats and stats['recoveries'] >= 4:  # Adjust this threshold based on your criteria
+            analysis += f"- Made {stats['recoveries']} recoveries\n"
+        analysis += "\n-ves:\n"
+        if 'minutes_played' in stats and stats['minutes_played'] <= 45:
+            analysis += f"- Had Less game time ({stats['minutes_played']} minutes played)\n"
+        if 'accurate_passes' in stats and stats['accurate_passes'] < 8:
+            analysis += f"- Less accurate passes:({stats['accurate_passes']} )\n"
+        if 'recoveries' in stats and stats['recoveries'] < 4:  # Adjust this threshold based on your criteria
+            analysis += f"- Made insufficient ball recoveries ({stats['recoveries']} recoveries)\n"
+        if 'goals_prevented' in stats and stats['goals_prevented'] < 0:  # Adjust this threshold based on your criteria
+            analysis += f"- Prevented {stats['goals_prevented']} goals\n"
+        if 'goals_conceded' in stats and stats['goals_conceded'] > 0:
+            analysis += f"- Conceeded {stats['goals_conceded']} goals\n"
+        analysis += "\nOverall Influence:\n"
+        if ('rating_title' in stats and stats['rating_title'] > 7.0 and
+                ('saves' in stats and stats['saves'] > 10 or
+                 'goals_prevented' in stats and stats['goals_prevented'] > 2 or
+                 'dribbles_succeeded' in stats and stats['dribbles_succeeded'] >= 7 or
+                 'long_balls_accurate' in stats and stats['long_balls_accurate'] > 7 or
+                 'touches_opp_box' in stats and stats['touches_opp_box'] > 5 or
+                 'recoveries' in stats and stats['recoveries'] > 10)):
+            # analysis += "- Significant overall influence on the game\n"
+
+            analysis += "- Overall, a highly influential performance on the pitch\n\n"
+        elif 'rating_title' in stats and stats['rating_title'] < 6.0:
+            analysis += "- Needs improvement\n\n"
+        else:
+            analysis += "- A performance with both positive and negative aspects\n\n"
+        st.write(analysis)
+        pass
     # if stats['rating_title'] > 7.0:
     # analysis += "- Impressive overall performance.\n"
-    if stats['chances_created'] in stats and stats['chances_created'] > 0:
+    if isgoalie==False and stats['chances_created'] in stats and stats['chances_created'] > 0:
         analysis += f"- Created {stats['chances_created']} chances\n"
     if 'expected_goals' in stats and stats[
         'expected_goals'] > 0.5:  # Adjust this threshold based on your criteria
@@ -107,9 +147,6 @@ def analyze_player_stats(stats,st,name):
         analysis += f"- {stats['goals']} goals\n"
     if 'assists' in stats and stats['assists'] > 0:
         analysis += f"- {stats['assists']} assists\n"
-    if 'expected_goals_on_target_faced' in stats and stats[
-        'expected_goals_on_target_faced'] > 0.3:  # Adjust this threshold based on your criteria
-        analysis += f"- Expected to score on-target shots ({stats['expected_goals_on_target_faced']} xGOT)\n"
     if 'passes_into_final_third' in stats and stats['passes_into_final_third'] >= 6:  # Adjust this threshold based on your criteria
         analysis += f"- Successfully passed into the final third ({stats['passes_into_final_third']} times)\n"
     if 'xG Non-penalty' in stats and stats["xG Non-penalty"] > 0.2:  # Adjust this threshold based on your criteria
@@ -128,8 +165,6 @@ def analyze_player_stats(stats,st,name):
         analysis += f"- Successfully completed {stats['dribbles_succeeded']} of dribbles attempted\n"
     if 'was_fouled' in stats and stats['was_fouled'] >= 4:  # Adjust this threshold based on your criteria
         analysis += f"- Was fouled {stats['was_fouled']} times, drawing fouls\n"
-    if 'goals_prevented' in stats and stats['goals_prevented'] > 0:  # Adjust this threshold based on your criteria
-        analysis += f"- Prevented {stats['goals_prevented']} goals\n"
     if 'blocked_shots' in stats and stats['blocked_shots'] > 0:  # Adjust this threshold based on your criteria
         analysis += f"- Blocked {stats['blocked_shots']} shots\n"
     if 'tackles_succeeded' in stats and stats['tackles_succeeded'] > 5:
@@ -146,8 +181,6 @@ def analyze_player_stats(stats,st,name):
         analysis += f"- Lost {stats['duel_lost']} duels\n"
     if 'ground_duels_won' in stats and stats['ground_duels_won'] > 5:  # Adjust this threshold based on your criteria
         analysis += f"- Won {stats['ground_duels_won']} ground duels\n"
-    if 'saves' in stats and stats['saves'] >= 5:
-        analysis += f"- Had Saves: {stats['saves']}\n"
     if 'shot_accuracy' in stats and stats['shot_accuracy'] > 0:
         analysis += f"- Accurate shots: {stats['shot_accuracy']}\n"
     if 'touches_opp_box' in stats and stats['touches_opp_box'] >= 5:  # Adjust this threshold based on your criteria
@@ -159,6 +192,9 @@ def analyze_player_stats(stats,st,name):
     if 'long_balls_accurate' in stats and stats['long_balls_accurate'] > 6 and stats[
         'long_balls_accurate'] != 0:  # Adjust this threshold based on your criteria
         analysis += f"- Successful in playing accurate long balls ({stats['long_balls_accurate']} accuracy)\n"
+    if 'long_balls_accurate'in stats and stats['long_balls_accurate'] < 4 and stats[
+        'long_balls_accurate'] != 0:  # Adjust this threshold based on your criteria
+        analysis += f"- Ineffective in playing accurate long balls: ({stats['long_balls_accurate']})\n"
 
     # Negative aspects
     analysis += "\n-ves:\n"
@@ -170,7 +206,7 @@ def analyze_player_stats(stats,st,name):
         analysis += "- Poor performance.\n"
     if 'minutes_played'in stats and stats['minutes_played'] <= 45:
         analysis += f"- Had Less game time ({stats['minutes_played']} minutes played)\n"
-    if 'accurate_passes' in stats and stats['accurate_passes'] < 10:
+    if 'accurate_passes' in stats and stats['accurate_passes'] < 8:
         analysis += f"- Less accurate passes:({stats['accurate_passes']} )\n"
     # ... add more negative aspects based on specific stats
     if 'expected_goals' in stats and stats['expected_goals'] < 0.1 and stats[
@@ -187,8 +223,6 @@ def analyze_player_stats(stats,st,name):
     if 'dribbles_succeeded' in stats and stats['dribbles_succeeded'] < 3 and stats[
         'dribbles_succeeded'] != 0:  # Adjust this threshold based on your criteria
         analysis += f"- completed a low number of dribbles ({stats['dribbles_succeeded']})\n"
-    if 'goals_prevented' in stats and stats['goals_prevented'] < 0:  # Adjust this threshold based on your criteria
-        analysis += f"- Prevented {stats['goals_prevented']} goals\n"
     if 'touches' in stats and stats['touches'] < 25:  # Adjust this threshold based on your criteria
         analysis += f"- Had {stats['touches']} touches, indicating less involvement in buildups\n"
     if 'dispossessed' in stats and stats['dispossessed'] > 0:  # Adjust this threshold based on your criteria
@@ -212,8 +246,7 @@ def analyze_player_stats(stats,st,name):
         analysis += f"- Aeriels won is only {stats['aerials_won']}\n"
     if 'saves' in stats and stats['saves'] < 5 and stats['saves']:
         analysis += f"- Saves: {stats['saves']}\n"
-    if 'goals_conceded' in stats and stats['goals_conceded'] > 0:
-        analysis += f"- Conceeded {stats['goals_conceded']} goals\n"
+
 
     # ... add more negative aspects based on specific stats
 
@@ -393,14 +426,14 @@ def subdataext(id,record,records):
                 fraction_str = f"{only[key]['stat']['value']}/{only[key]['stat']['total']}"
 
                 # Split the string into numerator and denominator
-                numerator, denominator = map(int, fraction_str.split('/'))
+                #numerator, denominator = map(int, fraction_str.split('/'))
 
                 # Calculate the percentage
-                try:
-                    percentage = (numerator / denominator) * 100
-                except ZeroDivisionError:
-                    percentage=0
-                l.append({f"{only[key]['key']}%": percentage})
+                #try:
+                    #percentage = (numerator / denominator) * 100
+                #except ZeroDivisionError:
+                    #percentage=0
+                l.append({f"{only[key]['key']}%": fraction_str})
             except KeyError:
                 continue
     l.append({"position": position})
@@ -543,15 +576,17 @@ def plotting(records,st):
                 x.remove(dic[key[0]])
             elif isinstance(val, bool):
                 x.remove(dic[key[0]])
-            elif isinstance(val, str) and "(" in val:
-                a = val.split("(")
-                b = a[1].split("%")
-                x[key[0]] = float(b[0])
-                ls.update({key[0]: a[0]})
+            elif isinstance(val, str) and "/" in val:
+                #a = val.split("(")
+                #b = a[1].split("%")
+                #x[key[0]] = float(b[0])
+                x.remove(dic[key[0]])
+                ls.update({keys: val})
             elif isinstance(val, str) and "%" in keys:
                 #a = val.split("/")
                 #b = a[1].split("%")
                 #x[key[0]] = float(b[0])
+                x.remove(dic[key[0]])
                 ls.update({keys: val})
             elif isinstance(val, str):
                 try:
@@ -560,7 +595,7 @@ def plotting(records,st):
                     x.remove(dic[key[0]])
         #st.write("newtest")
         #st.write(ls)
-        return
+        #return
         #x.pop()
         print(x)
         haha=x.copy()
@@ -588,6 +623,7 @@ def plotting(records,st):
                     zc[ind] = value * 10
             except TypeError as e:
                 print(e)
+
 
         color1, color2, color3 = random.sample(colors, 3)
         max_stat = max(zc)
