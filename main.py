@@ -3,7 +3,7 @@ os.popen("pip install -r requirements.txt")
 import streamlit as st
 import requests
 import json
-from operations import headtohead,match_details,get_player_stats,plotting,match_id_init
+from operations import headtohead,match_details,get_player_stats,plotting,match_id_init,match_predict
 
 # Streamlit UI
 st.title("Fotmob Analyser")
@@ -40,3 +40,5 @@ elif choice=="playerwise":
     get_player_stats(a,records)
     print("records", records)
     plotting(records,st)
+elif choice=="future prediction":
+    match_predict(match_id,st)
