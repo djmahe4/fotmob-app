@@ -7,7 +7,6 @@ import requests
 import numpy as np
 import shutil
 from datetime import date
-os.popen('pip install -r requirements.txt')
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 
 def match_id_init():
