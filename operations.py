@@ -7,6 +7,7 @@ import requests
 import numpy as np
 import shutil
 from datetime import date
+
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 
 def match_id_init():
@@ -80,6 +81,10 @@ def match_id_init():
             # obj["date"]=date.today()
             json.dump(b, file, indent=2)
     file.close()
+    file=open("leagues.json","r",encoding="utf-8")
+    contents=json.load(file)
+    file.close()
+    return contents
 
 def analyze_player_stats(stats,st,name):
     analysis = f"**{name}:**\n"
@@ -131,7 +136,7 @@ def analyze_player_stats(stats,st,name):
         else:
             analysis += "- A performance with both positive and negative aspects\n\n"
         st.write(analysis)
-        return
+        pass
     # if stats['rating_title'] > 7.0:
     # analysis += "- Impressive overall performance.\n"
     if isgoalie==False and stats['chances_created'] in stats and stats['chances_created'] > 0:

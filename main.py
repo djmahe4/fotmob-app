@@ -1,5 +1,3 @@
-import os
-os.popen('pip install -r requirements.txt')
 import streamlit as st
 import requests
 import json
@@ -7,10 +5,10 @@ from operations import headtohead,match_details,get_player_stats,plotting,match_
 
 # Streamlit UI
 st.title("Fotmob Analyser")
-match_id_init()
-file=open("leagues.json","r",encoding="utf-8")
-contents=json.load(file)
-file.close()
+contents=match_id_init()
+#file=open("leagues.json","r",encoding="utf-8")
+#contents=json.load(file)
+#file.close()
 choices={}
 for x in contents:
     for y in x.values():
