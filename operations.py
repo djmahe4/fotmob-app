@@ -124,7 +124,6 @@ def analyze_player_stats(stats,st,name):
         if ('rating_title' in stats and stats['rating_title'] > 7.0 and
                 ('saves' in stats and stats['saves'] > 10 or
                  'goals_prevented' in stats and stats['goals_prevented'] > 2 or
-                 'dribbles_succeeded' in stats and stats['dribbles_succeeded'] >= 7 or
                  'long_balls_accurate' in stats and stats['long_balls_accurate'] > 7 or
                  'touches_opp_box' in stats and stats['touches_opp_box'] > 5 or
                  'recoveries' in stats and stats['recoveries'] > 10)):
@@ -136,7 +135,7 @@ def analyze_player_stats(stats,st,name):
         else:
             analysis += "- A performance with both positive and negative aspects\n\n"
         st.write(analysis)
-        return
+       pass
     # if stats['rating_title'] > 7.0:
     # analysis += "- Impressive overall performance.\n"
     if 'chances_created' in stats and stats['chances_created'] > 0:
