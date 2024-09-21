@@ -1,4 +1,6 @@
 streamlit
-pandas
+#pandas
 numpy
 matplotlib
+requests
+seaborn
