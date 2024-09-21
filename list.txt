@@ -1,0 +1,5 @@
+{'aerials_won', 'big_chance_missed_title', 'Offsides', 'chances_created', 'fouls', 'expected_assists', 'long_balls_accurate', 'recoveries', 'defensive_actions', 'touches','goals',
+ 'total_shots', 'keeper_diving_save', 'shot_accuracy', 'dispossessed', 'headed_clearance', 'minutes_played', 'blocked_shots', 'passes_into_final_third', 'goals_prevented', 'dribble
+d_past', 'duel_lost', 'touches_opp_box', 'shot_blocks', 'xg_and_xa', 'corners', 'expected_goals_on_target_faced', 'player_throws', 'rating_title', 'expected_goals_on_target_variant
+', 'duel_won', 'was_fouled', 'accurate_passes', 'expected_goals', 'clearances', 'accurate_crosses', 'saves', 'keeper_high_claim', 'owngoal', 'saves_inside_box', 'dribbles_succeeded
+', 'expected_goals_non_penalty', 'tackles_succeeded', 'goals_conceded', 'ground_duels_won', 'interceptions', 'assists'}
