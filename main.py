@@ -27,7 +27,7 @@ print()
 match_id=choices[choice]
 st.write(f"Selected match: {choice}")
 st.write(f"Match ID: {match_id}")
-types_of_analysis=["head to head","playerwise"]
+types_of_analysis=["head to head","playerwise","future prediction"]
 choice=st.selectbox("Analysis Type",types_of_analysis)
 st.write(f"Selected analysis type: {choice}")
 print(choice)
