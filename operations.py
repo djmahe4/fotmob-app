@@ -136,7 +136,7 @@ def analyze_player_stats(stats,st,name):
         else:
             analysis += "- A performance with both positive and negative aspects\n\n"
         st.write(analysis)
-        pass
+        return
     # if stats['rating_title'] > 7.0:
     # analysis += "- Impressive overall performance.\n"
     if isgoalie==False and stats['chances_created'] in stats and stats['chances_created'] > 0:
