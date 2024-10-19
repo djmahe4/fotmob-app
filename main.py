@@ -4,6 +4,7 @@ import streamlit as st
 import requests
 import json
 from operations import headtohead,match_details,get_player_stats,plotting,match_id_init,match_predict
+from num_fotmob import main as numerology
 
 # Streamlit UI
 st.title("Fotmob Analyser")
@@ -27,7 +28,7 @@ print()
 match_id=choices[choice]
 st.write(f"Selected match: {choice}")
 st.write(f"Match ID: {match_id}")
-types_of_analysis=["head to head","playerwise","future prediction"]
+types_of_analysis=["head to head","playerwise","future prediction","numerology"]
 choice=st.selectbox("Analysis Type",types_of_analysis)
 st.write(f"Selected analysis type: {choice}")
 print(choice)
@@ -42,3 +43,5 @@ elif choice=="playerwise":
     plotting(records,st)
 elif choice=="future prediction":
     match_predict(match_id,st)
+elif choice=="numerology":
+    numerology(match_id,st)
