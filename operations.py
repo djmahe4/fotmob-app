@@ -117,7 +117,8 @@ def match_id_init():
         'ccode3': 'IND',
     }
     response = requests.get('https://www.fotmob.com/api/matches', params=params)  # , cookies=cookies, headers=headers)
-    yes = response.json()
+    #yes = response.json()
+    yes=json.loads(response.text)
 
     a = yes["leagues"]
     b = []
