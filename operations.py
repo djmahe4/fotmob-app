@@ -116,7 +116,7 @@ def match_id_init():
         'timezone': 'Asia/Calcutta',
         'ccode3': 'IND',
     }
-    response = requests.get('https://www.fotmob.com/api/matches', params=params)  # , cookies=cookies, headers=headers)
+    response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
     #yes = response.json()
     yes=json.loads(response.text)
 
