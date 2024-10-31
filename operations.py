@@ -16,7 +16,8 @@ def assesment(dict,vs):
     return sorted(dict.items(),key=lambda x:x[1])
 def performance(id,vs):
     response=requests.get(f"https://www.fotmob.com/api/playerData?id={id}")
-    recent=response.json()['recentMatches']
+    recent=json.loads(response.text)['recentMatches']
+    #recent=response.json()['recentMatches']
     total=0
     matches=0
     for i in recent:
