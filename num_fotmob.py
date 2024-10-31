@@ -10,6 +10,7 @@ import datetime
 import math
 import requests
 import os
+import json
 
 
 def plot_biorhythm_chart(combined_points, dates,name, st,cycle_label="Combined"):
@@ -44,7 +45,8 @@ def birth_get(id="4617846"):
     }
 
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params)
-    gem = response.json()
+    #gem = response.json()
+    gem=json.loads(response.text)
     hid=gem["general"]['homeTeam']['id']
     aid = gem["general"]['awayTeam']['id']
     ids=[hid,aid]
