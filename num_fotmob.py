@@ -60,7 +60,8 @@ def birth_get(id="4617846"):
         }
 
         response = requests.get('https://www.fotmob.com/api/teams', params=params)
-        gem = response.json()
+        #gem = response.json()
+        gem=json.loads(response.text)
         #st.write(gem)
         sortedl=gem["squad"][1:]
         #st.write(sortedl)
@@ -78,7 +79,8 @@ def birth_get(id="4617846"):
                 }
 
                 response = requests.get('https://www.fotmob.com/api/playerData', params=params)
-                gem = response.json()
+                #gem = response.json()
+                gem=json.loads(response.text)
                 dob=gem["birthDate"]["utcTime"]
                 details.update({name:dob})
                 #time.sleep(2)
