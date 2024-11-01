@@ -122,7 +122,7 @@ def match_id_init():
     print(diction)
     #response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
     params = urllib.parse.urlencode(params)
-    url = f'https://www.fotmob.com/api/matchDetails?{params}'
+    url = f'https://www.fotmob.com/api/matches?{params}'
 # Create a request object
     request = urllib.request.Request(url, headers=headers)
 
