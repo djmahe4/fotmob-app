@@ -114,9 +114,19 @@ def match_id_init():
     }
     #st.write(diction)
     print(diction)
-    response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
-    #yes = response.json()
-    yes=json.loads(response.text)
+    #response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
+    url = f'https://www.fotmob.com/api/matchDetails?{params}'
+
+# Create a request object
+    request = urllib.request.Request(url, headers=headers)
+
+# Make the request and handle the response
+    with urllib.request.urlopen(request) as response:
+        response_data = response.read().decode('utf-8')
+        data = json.loads(response_data)
+        print(json.dumps(data, indent=2)) 
+    yes = data
+    #yes=json.loads(response.text)
 
     a = yes["leagues"]
     b = []
