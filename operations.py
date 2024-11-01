@@ -109,6 +109,7 @@ def match_id_init():
         'timezone': diction['timezone'],#'Asia/Calcutta',
         'ccode3': diction['ccode3']#'IND',
     }
+    st.write(diction)
     response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
     #yes = response.json()
     yes=json.loads(response.text)
