@@ -51,7 +51,7 @@ match choice:
     #a,teamnames,score,records=match_details(match_id)
     #headtohead(match_id,teamnames,score,st)
 #elif choice=="playerwise":
-    a,teamnames,score,records=match_details(match_id)
+    #a,teamnames,score,records=match_details(match_id)
     #headtohead(match_id,teamnames,score,st)
     #get_player_stats(a,records)
     #print("records", records)
