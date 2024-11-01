@@ -101,12 +101,13 @@ def match_id_init():
     'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
     'sec-ch-ua-mobile': '?0',
-}
-
+    }
+    response=requests.get('https://www.fotmob.com/api/mylocation')
+    diction=json.loads(response.text)
     params = {
         'date': f'{z}',
-        'timezone': 'Asia/Calcutta',
-        'ccode3': 'IND',
+        'timezone': diction['timezone'],#'Asia/Calcutta',
+        'ccode3': diction['ccode3']#'IND',
     }
     response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
     #yes = response.json()
