@@ -33,16 +33,30 @@ types_of_analysis=["head to head","playerwise","future prediction","numerology"]
 choice=st.selectbox("Analysis Type",types_of_analysis)
 st.write(f"Selected analysis type: {choice}")
 print(choice)
-if choice=="head to head":
-    a,teamnames,score,records=match_details(match_id)
-    headtohead(match_id,teamnames,score,st)
-elif choice=="playerwise":
-    a,teamnames,score,records=match_details(match_id)
+switch(choice):
+    case "head to head":
+        a,teamnames,score,records=match_details(match_id)
+        headtohead(match_id,teamnames,score,st)
+    case "playerwise":
+        a,teamnames,score,records=match_details(match_id)
+        headtohead(match_id,teamnames,score,st)
+        get_player_stats(a,records)
+        print("records", records)
+        plotting(records,st)
+    case "future prediction":
+        match_predict(match_id,st)
+    case "numerology":
+        numerology(match_id,st)
+#if choice=="head to head":
+    #a,teamnames,score,records=match_details(match_id)
     #headtohead(match_id,teamnames,score,st)
-    get_player_stats(a,records)
-    print("records", records)
-    plotting(records,st)
-elif choice=="future prediction":
-    match_predict(match_id,st)
-elif choice=="numerology":
-    numerology(match_id,st)
+#elif choice=="playerwise":
+    3a,teamnames,score,records=match_details(match_id)
+    #headtohead(match_id,teamnames,score,st)
+    #get_player_stats(a,records)
+    #print("records", records)
+    #plotting(records,st)
+#elif choice=="future prediction":
+    #match_predict(match_id,st)
+#elif choice=="numerology":
+    #numerology(match_id,st)
