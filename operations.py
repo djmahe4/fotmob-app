@@ -11,6 +11,17 @@ import urllib.request
 import urllib.parse
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
+def url_extract(params,uri,headers):
+    params = urllib.parse.urlencode(params)
+    url = f'{uri}?{params}'
+# Create a request object
+    request = urllib.request.Request(url, headers=headers)
+
+# Make the request and handle the response
+    with urllib.request.urlopen(request) as response:
+        response_data = response.read().decode('utf-8')
+        data = json.loads(response_data)
+        return data
 
 def assesment(dict,vs):
     for x in dict:
@@ -546,9 +557,10 @@ def match_details(id):
     # Create the directory if it doesn't exist
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
-    response = requests.get('https://www.fotmob.com/api/matchDetails', params=params, headers=headers)
+    #response = requests.get('https://www.fotmob.com/api/matchDetails', params=params, headers=headers)
     #gem = response.json()
-    gem=json.loads(response.text)
+    #gem=json.loads(response.text)
+    gem=url_extract(params,uri,headers)
     # for i in gem:
     # print(i)
     #print(gem)
