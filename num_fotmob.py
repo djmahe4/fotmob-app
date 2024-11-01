@@ -13,6 +13,7 @@ import math
 import requests
 import os
 import json
+from operations import url_extract
 
 
 def plot_biorhythm_chart(combined_points, dates,name, st,cycle_label="Combined"):
@@ -61,9 +62,10 @@ def birth_get(id="4617846"):
     'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDY1NjQzMyIsImNvZGUiOjE3MzAzNTM1Nzg3Nzd9LCJzaWduYXR1cmUiOiJFRjEwQ0RCMTRGMjBCMTVGMDYxRTAxNjQ3MDYzRTc2NSJ9',
 }
 
-    response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
+    #response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
     #gem = response.json()
-    gem=json.loads(response.text)
+    #gem=json.loads(response.text)
+    gem=url_extract(params,'https://www.fotmob.com/api/matchDetails',headers)
     hid=gem["general"]['homeTeam']['id']
     aid = gem["general"]['awayTeam']['id']
     ids=[hid,aid]
