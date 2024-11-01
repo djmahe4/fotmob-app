@@ -98,13 +98,19 @@ def match_id_init():
     }
 
     headers = {
-    'sec-ch-ua-platform': '"Windows"',
-    'Referer': 'https://www.fotmob.com/?filter=time',
-    'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjQxMDMxJnRpbWV6b25lPUFzaWElMkZDYWxjdXR0YSZjY29kZTM9SU5EIiwiY29kZSI6MTczMDM1MzMxMjA2Mn0sInNpZ25hdHVyZSI6IkQ2REVDNkNGQjFEMjhBOTE5NTVGNEIyRDk2N0UwNzRGIn0=',
-    'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
+    'Accept': '*/*',
+    'Accept-Language': 'en-US,en;q=0.9,en-IN;q=0.8',
+    'Priority': 'u=1, i',
+    'Referer': 'https://www.fotmob.com/matches/lazio-vs-como/2w9j5q',
+    'Sec-CH-UA': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
+    'Sec-CH-UA-Mobile': '?0',
+    'Sec-CH-UA-Platform': '"Windows"',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-origin',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-    'sec-ch-ua-mobile': '?0',
-    }
+    'X-FM-Req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDUzNTQyMiIsImNvZGUiOjE3MzA0Njc4MzMwMDR9LCJzaWduYXR1cmUiOiIzM0Q4MTg1QTJBNkQ1RUUxRTM0RUE2MEU1MDNENzM1OSJ9',
+}
     response=requests.get('https://www.fotmob.com/api/mylocation')
     diction=json.loads(response.text)
     params = {
