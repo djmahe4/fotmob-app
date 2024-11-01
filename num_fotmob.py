@@ -65,7 +65,7 @@ def birth_get(id="4617846"):
     #response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
     #gem = response.json()
     #gem=json.loads(response.text)
-    gem=url_extract(params,'https://www.fotmob.com/api/matchDetails',headers)
+    gem=url_extract(params,'https://www.fotmob.com/api/matchDetails?',headers)
     hid=gem["general"]['homeTeam']['id']
     aid = gem["general"]['awayTeam']['id']
     ids=[hid,aid]
