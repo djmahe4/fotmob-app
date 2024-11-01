@@ -562,6 +562,7 @@ def match_details(id):
     # Create the directory if it doesn't exist
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
+    requests.get('https://www.fotmob.com/')
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params, headers=headers)
     #gem = response.json()
     gem=json.loads(response.text)
