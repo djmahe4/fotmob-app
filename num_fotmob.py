@@ -6,6 +6,8 @@ import matplotlib
 from matplotlib import dates
 from datetime import date,timedelta
 from datetime import datetime as dt
+import urllib.request
+import urllib.parse
 import datetime
 import math
 import requests
