@@ -3,7 +3,8 @@ os.popen("pip install -r requirements.txt")
 import streamlit as st
 import requests
 import json
-from operations import headtohead,match_details,get_player_stats,plotting,match_id_init,match_predict
+#from operations import headtohead,match_details,get_player_stats,plotting,match_id_init,match_predict
+from operations import *
 from num_fotmob import main as numerology
 
 # Streamlit UI
