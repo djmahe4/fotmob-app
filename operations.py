@@ -547,7 +547,8 @@ def match_details(id):
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params, headers=headers)
-    gem = response.json()
+    #gem = response.json()
+    gem=json.loads(response.text)
     # for i in gem:
     # print(i)
     #print(gem)
