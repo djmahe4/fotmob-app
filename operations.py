@@ -7,11 +7,15 @@ import requests
 import numpy as np
 import shutil
 from datetime import date
-import urllib.request
-import urllib.parse
+import urllib.request 
+import urllib.parse 
+import http.cookiejar
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 def url_extract(params,uri,headers):
+    # Create a cookie jar to store cookies 
+    cookie_jar = http.cookiejar.CookieJar() # Define the opener to handle cookies 
+    opener =urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar))
     params = urllib.parse.urlencode(params)
     url = f'{uri}?{params}'
 # Create a request object
