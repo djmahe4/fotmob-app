@@ -7,6 +7,8 @@ import requests
 import numpy as np
 import shutil
 from datetime import date
+import urllib.request
+import urllib.parse
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 
