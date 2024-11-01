@@ -565,6 +565,7 @@ def match_details(id):
     #response = requests.get('https://www.fotmob.com/api/matchDetails', params=params, headers=headers)
     #gem = response.json()
     #gem=json.loads(response.text)
+    print(id)
     gem=url_extract(params,"https://www.fotmob.com/api/matchDetails?",headers)
     # for i in gem:
     # print(i)
