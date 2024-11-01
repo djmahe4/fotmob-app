@@ -4,11 +4,12 @@ import streamlit as st
 import requests
 import json
 from operations import headtohead,match_details,get_player_stats,plotting,match_id_init,match_predict
-#from operations import *
+from datetime import datetime
 from num_fotmob import main as numerology
 
 # Streamlit UI
 st.title("Fotmob Analyser")
+st.write(datetime.today())
 contents=match_id_init()
 #file=open("leagues.json","r",encoding="utf-8")
 #contents=json.load(file)
@@ -31,22 +32,23 @@ st.write(f"Selected match: {choice}")
 st.write(f"Match ID: {match_id}")
 types_of_analysis=["head to head","playerwise","future prediction","numerology"]
 choice=st.selectbox("Analysis Type",types_of_analysis)
-st.write(f"Selected analysis type: {choice}")
-print(choice)
-match choice:
-    case "head to head":
-        a,teamnames,score,records=match_details(match_id)
-        headtohead(match_id,teamnames,score,st)
-    case "playerwise":
-        a,teamnames,score,records=match_details(match_id)
-        headtohead(match_id,teamnames,score,st)
-        get_player_stats(a,records)
-        print("records", records)
-        plotting(records,st)
-    case "future prediction":
-        match_predict(match_id,st)
-    case "numerology":
-        numerology(match_id,st)
+if st.button("Start"):
+    st.write(f"Selected analysis type: {choice}")
+    print(choice)
+    match choice:
+        case "head to head":
+            a,teamnames,score,records=match_details(match_id)
+            headtohead(match_id,teamnames,score,st)
+        case "playerwise":
+            a,teamnames,score,records=match_details(match_id)
+            headtohead(match_id,teamnames,score,st)
+            get_player_stats(a,records)
+            print("records", records)
+            plotting(records,st)
+        case "future prediction":
+            match_predict(match_id,st)
+        case "numerology":
+            numerology(match_id,st)
 #if choice=="head to head":
     #a,teamnames,score,records=match_details(match_id)
     #headtohead(match_id,teamnames,score,st)
