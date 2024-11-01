@@ -33,7 +33,7 @@ types_of_analysis=["head to head","playerwise","future prediction","numerology"]
 choice=st.selectbox("Analysis Type",types_of_analysis)
 st.write(f"Selected analysis type: {choice}")
 print(choice)
-switch(choice):
+match choice:
     case "head to head":
         a,teamnames,score,records=match_details(match_id)
         headtohead(match_id,teamnames,score,st)
