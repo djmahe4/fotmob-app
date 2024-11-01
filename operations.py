@@ -141,6 +141,7 @@ def match_id_init():
     with urllib.request.urlopen(request) as response:
         response_data = response.read().decode('utf-8')
         data = json.loads(response_data)
+        json.dumps(data,"leagues.json", indent=2)
         print(json.dumps(data, indent=2)) 
     yes = data
     #yes=json.loads(response.text)
