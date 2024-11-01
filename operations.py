@@ -170,7 +170,6 @@ def match_id_init():
             # obj=json.load(open("leagues.json"))
             # obj["date"]=date.today()
             json.dump(b, file, indent=2)
-            print(json.dump(b,indent=2))
     file.close()
     file=open("leagues.json","r",encoding="utf-8")
     contents=json.load(file)
