@@ -74,7 +74,7 @@ def match_predict(match_id,st):
     st.write(aplayers)
 
 def match_id_init():
-    global st
+    #global st
     x = date.today()
     y = str(x).split('-')
     z = ''
