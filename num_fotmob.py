@@ -282,7 +282,7 @@ def main(id,st):
     date_list = get_date_range()
     matchid=id
     #date_of_birth,name=usedata(y,n)
-    data=birth_get(matchid)
+    data,mtime=birth_get(matchid)
     for name, date_of_birth in data.items():
         st.write(f"Name: {name}")
         st.write(f"DOB: {date_of_birth}")
