@@ -284,7 +284,7 @@ def main(id,st):
     
     data,mtime=birth_get(matchid)
     #date_of_birth,name=usedata(y,n)
-    full_date = dt.strptime(mdate, "%Y-%m-%dT%H:%M:%S.%fZ")
+    full_date = dt.strptime(mtime, "%Y-%m-%dT%H:%M:%S.%fZ")
 # Format to just the date part
     today = full_date.strftime("%Y-%m-%d")
 
