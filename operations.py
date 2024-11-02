@@ -127,15 +127,13 @@ def match_id_init():
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
     'X-FM-Req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDUzNTQyMiIsImNvZGUiOjE3MzA0Njc4MzMwMDR9LCJzaWduYXR1cmUiOiIzM0Q4MTg1QTJBNkQ1RUUxRTM0RUE2MEU1MDNENzM1OSJ9',
 }
-    response=requests.get('https://www.fotmob.com/api/mylocation')
-    diction=json.loads(response.text)
     params = {
         'date': f'{z}',
-        'timezone': diction['timezone'],#'Asia/Calcutta',
-        'ccode3': diction['ccode3']#'IND',
+        'timezone': 'Asia/Calcutta',
+        'ccode3': 'IND',
     }
     #st.write(diction)
-    print(diction)
+    #print(diction)
     #response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
     params = urllib.parse.urlencode(params)
     url = f'https://www.fotmob.com/api/matches?{params}'
