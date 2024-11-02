@@ -10,6 +10,7 @@ from datetime import date
 import urllib.request 
 import urllib.parse 
 import http.cookiejar
+from num_fotmob import extraction
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 def url_extract(params,uri,headers):
@@ -562,10 +563,7 @@ def match_details(id):
     # Create the directory if it doesn't exist
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
-    requests.get('https://www.fotmob.com/api/mylocation')
-    response = requests.get('https://www.fotmob.com/api/matchDetails', params=params, headers=headers)
-    #gem = response.json()
-    gem=json.loads(response.text)
+    gem= extraction(requests.get(f'https://www.fotmob.com/match/{id}').text)['props']['pageProps']
     print(id)
     #gem=url_extract(params,"https://www.fotmob.com/api/matchDetails",headers)
     # for i in gem:
