@@ -252,7 +252,7 @@ def biorhythm_chart(days, combined):
     biorhythm_data.append([math.sin(2 * math.pi * i / combined) for i in range(days - 15, days + 15)])
 
     return biorhythm_data[0]
-def get_date_range(days_before=15, days_after=14):
+def get_date_range(today="",days_before=-15, days_after=14):
   """
   Finds today's date and a range of dates before and after in dd-mm-yyyy format.
 
@@ -263,12 +263,13 @@ def get_date_range(days_before=15, days_after=14):
   Returns:
       list: A list of strings representing the dates in dd-mm-yyyy format.
   """
-  today = date.today()
+  if today=="":
+    today = date.today()
   date_range = []
 
   # Add date 15 days before today
   #date_range.append(today - timedelta(days=days_before))
-  for i in range(-15, days_after +1):
+  for i in range(days_before, days_after +1):
     date_range.append(today - timedelta(days=i))
   formatted_dates = [date.strftime("%d-%m-%Y") for date in date_range]
 
