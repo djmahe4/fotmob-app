@@ -13,7 +13,7 @@ import math
 import requests
 import os
 import json
-from operations import url_extract
+#from operations import url_extract
 from bs4 import BeautifulSoup
 
 def plot_biorhythm_chart(combined_points, dates,name, st,cycle_label="Combined"):
