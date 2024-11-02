@@ -42,4 +42,4 @@ def get_match_ids():
             #obj["date"]=date.today()
             json.dump(b, file, indent=2,ensure_ascii=False)
     file.close()
-get_match_ids()
+#get_match_ids()
