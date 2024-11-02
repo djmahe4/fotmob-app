@@ -173,11 +173,12 @@ def match_id_init():
             # obj=json.load(open("leagues.json"))
             # obj["date"]=date.today()
             json.dump(b, file, indent=2)
-    file.close()
-    file=open("leagues.json","r",encoding="utf-8")
-    contents=json.load(file)
-    file.close()
-    return contents
+    #file.close()
+    #file=open("leagues.json","r",encoding="utf-8")
+    #contents=json.load(file)
+    #file.close()
+    #return contents
+    return b
 
 def analyze_player_stats(stats,st,name):
     analysis = f"**{name}:**\n"
