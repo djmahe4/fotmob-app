@@ -13,7 +13,7 @@ import http.cookiejar
 from num_fotmob import extraction
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
-def url_extract(params,uri,headers):
+def url_extract(params="",uri="",headers=""):
     # Create a cookie jar to store cookies 
     #cookie_jar = http.cookiejar.CookieJar() # Define the opener to handle cookies 
     #opener =urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar))
