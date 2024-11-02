@@ -14,7 +14,7 @@ import requests
 import os
 import json
 from operations import url_extract
-
+from bs4 import BeautifulSoup
 
 def plot_biorhythm_chart(combined_points, dates,name, st,cycle_label="Combined"):
   """Plots the biorhythm chart with dates using matplotlib.pyplot."""
@@ -41,63 +41,51 @@ def plot_biorhythm_chart(combined_points, dates,name, st,cycle_label="Combined")
   #plt.show()
   st.pyplot(fig)
 
-def birth_get(id="4617846"):
+def extraction(html):
+	soup = BeautifulSoup(html, 'html.parser')
+
+# Find the <script> tag with id="__NEXT_DATA__"
+	script_tag = soup.find('script', id='__NEXT_DATA__', type='application/json')
+
+# Extract the JSON content
+	if script_tag:
+	   json_content = script_tag.string
+	   if json_content:
+	   	data = json.loads(json_content)
+	return data
+def birth_get(id="4534613"):
 
     params = {
         'matchId': f'{id}',
     }
-    headers = {
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-    # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; g_state={"i_p":1729939157741,"i_l":3}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3A1570%3A396e%3Aec8b%3Ab96e%3A7a7f%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; panoramaId_expiry=1730956138989; panoramaId=a7e77b7fe87c1cd7d758189a0e4416d539384ed4a4570b7f8b2da0a1f43435c9; panoramaIdType=panoIndiv; cto_bundle=NyJUGV9XdHpnQ0lrS0x2VUdmcU93UGZNUWd2RXpTRzVzVjM5V3JBbkRWYmQyOTVtZTFyejJXJTJGS0dKZjBoUDRYc1phakI5UWJYaE0xdVhRN1Fzdjhvc3Y3WjJPa3RKZ3ZZTiUyRlRRMzh5ekVRM2lORVV4Q1QlMkZMRVlvVGJia01Iak1aa3VYdTAwcGpBVklURHdQTXZqaHppYjR6emclM0QlM0Q; FCNEC=%5B%5B%22AKsRol9qpaNl4wm4MHOVezEtDiaTFBAh353e5-QjRWlllse4_D_907sNl4siF5a2ML9LC0BCsULBHscW6NdB9Oj3Q-lQaFmNL4_4kj-D24LRG9R0I-N0lL0M4ilmKgp11LNCbAqcSimus1GuGQcIS4nFQCG0hg0QUw%3D%3D%22%5D%5D; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1730353286:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1730353286:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; _ga_G0V1WDW9B2=GS1.1.1730351331.8.1.1730353576.0.0.0',
-    'priority': 'u=1, i',
-    'referer': 'https://www.fotmob.com/',
-    'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-    'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDY1NjQzMyIsImNvZGUiOjE3MzAzNTM1Nzg3Nzd9LCJzaWduYXR1cmUiOiJFRjEwQ0RCMTRGMjBCMTVGMDYxRTAxNjQ3MDYzRTc2NSJ9',
-}
-
+    
+    gem= extraction(requests.get(f'https://www.fotmob.com/match/{id}').text)['props']['pageProps']
+    #print(gem.keys())
     #response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
     #gem = response.json()
     #gem=json.loads(response.text)
-    response.get(f'https://www.fotmob.com/match/{id}')
-    gem=url_extract(params,'https://www.fotmob.com/api/matchDetails?',headers)
+    #gem=url_extract(params,'https://www.fotmob.com/api/matchDetails?',headers)
     hid=gem["general"]['homeTeam']['id']
+    print(gem['seo'].keys())
+    hurl=gem["seo"]['eventJSONLD']['homeTeam']['url']
+    aurl=gem["seo"]['eventJSONLD']['awayTeam']['url']
+    
+    #print(gem.keys())
+    #print(gem["seo"])
     aid = gem["general"]['awayTeam']['id']
     ids=[hid,aid]
+    urls=[hurl,aurl]
     #st.write(gem)
     #st.write(ids)
     details={}
-    for i in ids:
-        params = {
-            'id': f'{i}',
-            'ccode3': 'IND',
-        }
-        headers = {
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-    # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; g_state={"i_p":1729939157741,"i_l":3}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3A1570%3A396e%3Aec8b%3Ab96e%3A7a7f%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; panoramaId_expiry=1730956138989; panoramaId=a7e77b7fe87c1cd7d758189a0e4416d539384ed4a4570b7f8b2da0a1f43435c9; panoramaIdType=panoIndiv; cto_bundle=NyJUGV9XdHpnQ0lrS0x2VUdmcU93UGZNUWd2RXpTRzVzVjM5V3JBbkRWYmQyOTVtZTFyejJXJTJGS0dKZjBoUDRYc1phakI5UWJYaE0xdVhRN1Fzdjhvc3Y3WjJPa3RKZ3ZZTiUyRlRRMzh5ekVRM2lORVV4Q1QlMkZMRVlvVGJia01Iak1aa3VYdTAwcGpBVklURHdQTXZqaHppYjR6emclM0QlM0Q; FCNEC=%5B%5B%22AKsRol9qpaNl4wm4MHOVezEtDiaTFBAh353e5-QjRWlllse4_D_907sNl4siF5a2ML9LC0BCsULBHscW6NdB9Oj3Q-lQaFmNL4_4kj-D24LRG9R0I-N0lL0M4ilmKgp11LNCbAqcSimus1GuGQcIS4nFQCG0hg0QUw%3D%3D%22%5D%5D; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1730353286:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1730353286:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; _ga_G0V1WDW9B2=GS1.1.1730351331.8.1.1730354204.0.0.0',
-    'priority': 'u=1, i',
-    'referer': 'https://www.fotmob.com/teams/7726/overview/beasain',
-    'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-    'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvdGVhbXM/aWQ9NzcyNiZjY29kZTM9SU5EIiwiY29kZSI6MTczMDM1NDIwNDIwNH0sInNpZ25hdHVyZSI6IkI2QkI3MjE3RUE1OUVGRTNEQ0Q3MTdEQUZCQ0IxOUFEIn0=',
-}
-
-        response = requests.get('https://www.fotmob.com/api/teams', params=params,headers=headers)
-        #gem = response.json()
-        gem=json.loads(response.text)
+    for i in urls:
+        id=ids[urls.index(i)]
+        print(id)
+        response=requests.get(i)
+        gem= extraction(response.text)['props']['pageProps']['fallback'][f'team-{id}']
+        #gem=json.loads(response.text)
         #st.write(gem)
+        print(gem.keys())
         sortedl=gem["squad"][1:]
         #st.write(sortedl)
         for j in sortedl:
@@ -112,24 +100,12 @@ def birth_get(id="4617846"):
                 params = {
                     'id': f'{pid}',
                 }
-                headers = {
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-    # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; g_state={"i_p":1729939157741,"i_l":3}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3A1570%3A396e%3Aec8b%3Ab96e%3A7a7f%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; panoramaId_expiry=1730956138989; panoramaId=a7e77b7fe87c1cd7d758189a0e4416d539384ed4a4570b7f8b2da0a1f43435c9; panoramaIdType=panoIndiv; cto_bundle=NyJUGV9XdHpnQ0lrS0x2VUdmcU93UGZNUWd2RXpTRzVzVjM5V3JBbkRWYmQyOTVtZTFyejJXJTJGS0dKZjBoUDRYc1phakI5UWJYaE0xdVhRN1Fzdjhvc3Y3WjJPa3RKZ3ZZTiUyRlRRMzh5ekVRM2lORVV4Q1QlMkZMRVlvVGJia01Iak1aa3VYdTAwcGpBVklURHdQTXZqaHppYjR6emclM0QlM0Q; FCNEC=%5B%5B%22AKsRol9qpaNl4wm4MHOVezEtDiaTFBAh353e5-QjRWlllse4_D_907sNl4siF5a2ML9LC0BCsULBHscW6NdB9Oj3Q-lQaFmNL4_4kj-D24LRG9R0I-N0lL0M4ilmKgp11LNCbAqcSimus1GuGQcIS4nFQCG0hg0QUw%3D%3D%22%5D%5D; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1730354205:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1730354205:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; _ga_G0V1WDW9B2=GS1.1.1730351331.8.1.1730354308.0.0.0',
-    'priority': 'u=1, i',
-    'referer': 'https://www.fotmob.com/players/1407022',
-    'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-    'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyRGF0YT9pZD0xNDA3MDIyIiwiY29kZSI6MTczMDM1NDMwOTAwNH0sInNpZ25hdHVyZSI6IkM3N0E3RjMxRkQ0MEQxNTJDMEFBNzE4RDhFRjVEODIyIn0=',
-}
-                response = requests.get('https://www.fotmob.com/api/playerData', params=params,headers=headers)
+                
+                #response = requests.get('https://www.fotmob.com/api/playerData', params=params,headers=headers)
                 #gem = response.json()
-                gem=json.loads(response.text)
+                #gem=json.loads(response.text)
+                gem=extraction(requests.get(f'https://www.fotmob.com/players/{pid}/').text)['props']['pageProps']['fallback'][f'player:{pid}']
+                #return gem.keys()
                 dob=gem["birthDate"]["utcTime"]
                 details.update({name:dob})
                 #time.sleep(2)
@@ -137,7 +113,7 @@ def birth_get(id="4617846"):
         #break
     #st.write(details)
     return details
-
+  
 
 def usedata(name,n):
     for i in range(len(n)):
