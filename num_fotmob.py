@@ -69,6 +69,7 @@ def birth_get(id="4534613"):
     print(gem['seo'].keys())
     hurl=gem["seo"]['eventJSONLD']['homeTeam']['url']
     aurl=gem["seo"]['eventJSONLD']['awayTeam']['url']
+    mtime=gem['header']['status']['utcTime']
     
     #print(gem.keys())
     #print(gem["seo"])
@@ -112,7 +113,7 @@ def birth_get(id="4534613"):
                 #break
         #break
     #st.write(details)
-    return details
+    return details,mtime
   
 
 def usedata(name,n):
