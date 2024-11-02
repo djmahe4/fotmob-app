@@ -280,9 +280,15 @@ def main(id,st):
         #x = f.read()
         #n = x.split()
     # Get the date range
-    date_list = get_date_range()
     matchid=id
     #date_of_birth,name=usedata(y,n)
+    full_date = dt.strptime(mdate, "%Y-%m-%dT%H:%M:%S.%fZ")
+# Format to just the date part
+    today = full_date.strftime("%Y-%m-%d")
+
+# To use it with dt.strptime if needed:
+    today = dt.strptime(today, "%Y-%m-%d")
+    date_list = get_date_range(today)
     data,mtime=birth_get(matchid)
     for name, date_of_birth in data.items():
         st.write(f"Name: {name}")
