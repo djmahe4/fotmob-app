@@ -140,8 +140,12 @@ def match_id_init():
     #params = urllib.parse.urlencode(params)
     #url = f'https://www.fotmob.com/api/matches?{params}'
 # Create a request object
-    request = urllib.request.Request(f"https://www.fotmob.com/api/matches?date={z}")#, headers=headers)
-
+    #request = urllib.request.Request(f"https://www.fotmob.com/api/matches?date={z}")#, headers=headers)
+    uri="https://www.fotmob.com/api/matches"
+    params = urllib.parse.urlencode(params)
+    url = f'{uri}?{params}'
+# Create a request object
+    request = urllib.request.Request(url, headers=headers)
 # Make the request and handle the response
     with urllib.request.urlopen(request) as response:
         response_data = response.read().decode('utf-8')
