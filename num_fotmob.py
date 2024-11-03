@@ -312,7 +312,7 @@ def main(id,st):
             di.update({date:bio[i]})
         #st.write(di)
         # st.write table header
-        st.write("-" * 58)
+	st.write("-" * 58)
         new = pd.DataFrame(di.items(), columns=["Date", "Values"])
         st.table(new)
         #plot_biorhythm_chart(bio, date_list)
