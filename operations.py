@@ -132,7 +132,7 @@ def match_id_init():
     'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjQxMTAzJnRpbWV6b25lPUFzaWElMkZDYWxjdXR0YSZjY29kZTM9VVNBX0NBIiwiY29kZSI6MTczMDYwNjIzNzU5M30sInNpZ25hdHVyZSI6IkQ2MEMxMzc5RThCN0JFNUYwNTU5MjdDOTgwNEM1Njg5In0=',
     }
     params = {
-    'date': '20241103',
+    'date': z,
     'timezone': 'Asia/Calcutta',
     'ccode3': 'USA_CA',
     }
