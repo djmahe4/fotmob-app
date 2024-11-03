@@ -94,6 +94,7 @@ def match_predict(match_id,st):
 def match_id_init():
     #requests.get("https://www.fotmob.com/matches")
     #global st
+    diction=json.loads(requests.get("https://www.fotmob.com/api/mylocation").text)
     x = date.today()
     y = str(x).split('-')
     z = ''
@@ -130,8 +131,8 @@ def match_id_init():
 }
     params = {
         'date': f'{z}',
-        #'timezone': 'Asia/Calcutta',
-        #'ccode3': 'IND',
+        'timezone': diction['timezone']#'Asia/Calcutta',
+        'ccode3': diction['ccode3']#'IND',
     }
     #st.write(diction)
     #print(diction)
