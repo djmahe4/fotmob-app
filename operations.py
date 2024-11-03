@@ -95,9 +95,7 @@ def match_predict(match_id,st):
 def match_id_init():
     #requests.get("https://www.fotmob.com/matches")
     #global st
-    diction=json.loads(requests.get("https://www.fotmob.com/api/mylocation").text)
-    print(diction)
-    st.write(diction)
+ 
     x = date.today()
     y = str(x).split('-')
     z = ''
@@ -119,27 +117,29 @@ def match_id_init():
     }
 
     headers = {
-    'Accept': '*/*',
-    'Accept-Language': 'en-US,en;q=0.9,en-IN;q=0.8',
-    'Priority': 'u=1, i',
-    'Referer': 'https://www.fotmob.com/matches/lazio-vs-como/2w9j5q',
-    'Sec-CH-UA': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
-    'Sec-CH-UA-Mobile': '?0',
-    'Sec-CH-UA-Platform': '"Windows"',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'same-origin',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-    'X-FM-Req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDUzNTQyMiIsImNvZGUiOjE3MzA0Njc4MzMwMDR9LCJzaWduYXR1cmUiOiIzM0Q4MTg1QTJBNkQ1RUUxRTM0RUE2MEU1MDNENzM1OSJ9',
-}
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'if-none-match': '"9e7fx18hbp5hlr"',
+    'priority': 'u=1, i',
+    'referer': 'https://www.fotmob.com/',
+    'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
+    'x-fm-req': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjQxMTAzJnRpbWV6b25lPUFzaWElMkZDYWxjdXR0YSZjY29kZTM9VVNBX0NBIiwiY29kZSI6MTczMDYwNjIzNzU5M30sInNpZ25hdHVyZSI6IkQ2MEMxMzc5RThCN0JFNUYwNTU5MjdDOTgwNEM1Njg5In0=',
+    }
     params = {
-        'date': f'{z}',
-        'timezone': 'Asia/Calcutta',
-        'ccode3': 'USA_CA',
+    'date': '20241103',
+    'timezone': 'Asia/Calcutta',
+    'ccode3': 'USA_CA',
     }
     #st.write(diction)
     #print(diction)
-    #response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
+    response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
+    st.write(response.text)
     #params = urllib.parse.urlencode(params)
     #url = f'https://www.fotmob.com/api/matches?{params}'
 # Create a request object
