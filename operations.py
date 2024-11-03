@@ -134,8 +134,8 @@ def match_id_init():
 }
     params = {
         'date': f'{z}',
-        'timezone': diction['timezone'],#'Asia/Calcutta',
-        'ccode3': diction['ccode3']#'IND',
+        'timezone': 'Asia/Calcutta',
+        'ccode3': 'USA_CA',
     }
     #st.write(diction)
     #print(diction)
