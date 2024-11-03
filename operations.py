@@ -139,22 +139,7 @@ def match_id_init():
     #st.write(diction)
     #print(diction)
     response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
-    st.write(response.text)
-    #params = urllib.parse.urlencode(params)
-    #url = f'https://www.fotmob.com/api/matches?{params}'
-# Create a request object
-    #request = urllib.request.Request(f"https://www.fotmob.com/api/matches?date={z}")#, headers=headers)
-    uri="https://www.fotmob.com/api/matches"
-    params = urllib.parse.urlencode(params)
-    url = f'{uri}?{params}'
-# Create a request object
-    request = urllib.request.Request(url, headers=headers)
-# Make the request and handle the response
-    with urllib.request.urlopen(request) as response:
-        response_data = response.read().decode('utf-8')
-        data = json.loads(response_data)
-        #json.dumps(data,"leagues.json", indent=2)
-        print(json.dumps(data, indent=2)) 
+    data=json.loads(response.text)
     yes = data
     #yes=json.loads(response.text)
 
