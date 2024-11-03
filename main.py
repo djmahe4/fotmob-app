@@ -5,15 +5,16 @@ import requests
 import json
 from operations import headtohead, match_details, get_player_stats, plotting, match_id_init, match_predict
 from num_fotmob import main as numerology
+from datetime import datetime
 
 # Streamlit UI
 st.title("Fotmob Analyser")
-
+st.write(datetime.today())
 # Define a button to start the analysis after choices are made
 if 'match_selected' not in st.session_state:
     st.session_state.match_selected = False
 
-if st.button("Start Analysis"):
+if st.button("Start"):
     contents = match_id_init()  # Only calls match_id_init once
     choices = {}
     for x in contents:
@@ -35,19 +36,20 @@ if st.session_state.match_selected:
 
     types_of_analysis = ["head to head", "playerwise", "future prediction", "numerology"]
     analysis_choice = st.selectbox("Analysis Type", types_of_analysis)
-    st.write(f"Selected analysis type: {analysis_choice}")
+    if st.button("Start analysis"):
+        st.write(f"Selected analysis type: {analysis_choice}")
 
-    # Trigger analysis based on the selected type
-    match analysis_choice:
-        case "head to head":
+        # Trigger analysis based on the selected type
+        # analysis_choice:
+        if analysis_choice== "head to head":
             a, teamnames, score, records = match_details(match_id)
             headtohead(match_id, teamnames, score, st)
-        case "playerwise":
+        elif analysis_choice== "playerwise":
             a, teamnames, score, records = match_details(match_id)
             headtohead(match_id, teamnames, score, st)
             get_player_stats(a, records)
             plotting(records, st)
-        case "future prediction":
+        elif analysis_choice== "future prediction":
             match_predict(match_id, st)
-        case "numerology":
+        elif analysis_choice== "numerology":
             numerology(match_id, st)
