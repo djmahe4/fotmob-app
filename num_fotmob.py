@@ -317,7 +317,7 @@ def main(id,st):
         st.table(new)
         #plot_biorhythm_chart(bio, date_list)
         ck=16 #ck should be set to 15 by default
-	st.write("BIO:",bio[15])
+	st.write(f"BIO:{bio[15]}")
         if abs(float(f"{bio[ck - 1]:.4f}")) == abs(float(f"{bio[ck + 1]:.4f}")):
             st.write("Warning!! Prediction may fail!")
         #st.write(bio)
