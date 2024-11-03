@@ -11,6 +11,7 @@ import urllib.request
 import urllib.parse 
 import http.cookiejar
 from num_fotmob import extraction
+import streamlit as st
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 def url_extract(params="",uri="",headers=""):
@@ -95,6 +96,8 @@ def match_id_init():
     #requests.get("https://www.fotmob.com/matches")
     #global st
     diction=json.loads(requests.get("https://www.fotmob.com/api/mylocation").text)
+    print(diction)
+    st.write(diction)
     x = date.today()
     y = str(x).split('-')
     z = ''
