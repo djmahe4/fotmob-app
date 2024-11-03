@@ -9,7 +9,6 @@ from num_fotmob import main as numerology
 
 # Streamlit UI
 st.title("Fotmob Analyser")
-requests.get("https://www.fotmob.com/")
 contents=match_id_init()
 #file=open("leagues.json","r",encoding="utf-8")
 #contents=json.load(file)
