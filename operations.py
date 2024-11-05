@@ -139,7 +139,11 @@ def match_id_init():
     #st.write(diction)
     #print(diction)
     response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)
-    data=json.loads(response.text)
+    #data=json.loads(response.text)
+    try:
+        data=response.json()
+    except Exception:
+        st.write(response.status_code)
     yes = data
     #yes=json.loads(response.text)
 
