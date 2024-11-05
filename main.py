@@ -15,7 +15,7 @@ if 'match_selected' not in st.session_state:
     st.session_state.match_selected = False
 
 if st.button("Start"):
-    st.write(json.dumps(requests.get("https://www.fotmob.com/api/mylocation").text))
+    st.write(requests.get("https://www.fotmob.com/api/mylocation").json())
     contents = match_id_init()  # Only calls match_id_init once
     choices = {}
     for x in contents:
