@@ -144,6 +144,7 @@ def match_id_init():
     #data=json.loads(response.text)
     try:
         #data=response.json()
+        st.write(st.session_state)
         url = f"https://www.fotmob.com/api/matches?date=20241226&timezone=Asia%2FCalcutta&ccode3=IND"
         parsed = urlparse(url)
         conn = http.client.HTTPSConnection(parsed.netloc)
