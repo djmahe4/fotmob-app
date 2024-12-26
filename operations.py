@@ -144,15 +144,15 @@ def match_id_init():
     #data=json.loads(response.text)
     try:
         #data=response.json()
-        url = f"https://www.sofascore.com/api/v1/player/{pid}/events/last/{ind}"
+        url = f"https://www.fotmob.com/api/matches"
         parsed = urlparse(url)
         conn = http.client.HTTPSConnection(parsed.netloc)
         conn.request("GET", parsed.path)
         res = conn.getresponse()
         data = res.read()
         jdata = json.loads(data.decode("utf-8"))
-    except Exception:
-        st.write(response.status_code)
+    except Exception e:
+        st.write(e)
     yes = jdata
     #yes=json.loads(response.text)
 
