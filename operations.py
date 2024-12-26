@@ -7,8 +7,9 @@ import requests
 import numpy as np
 import shutil
 from datetime import date
-import urllib.request 
-import urllib.parse 
+#import urllib.request 
+import http.client
+from urllib.parse import urlparse
 import http.cookiejar
 from num_fotmob import extraction
 import streamlit as st
@@ -139,13 +140,20 @@ def match_id_init():
     #requests.get("https://www.fotmob.com/_next/static/chunks/pages/_app-8fa88b1f9d016078.js")
     #st.write(diction)
     #print(diction)
-    response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)#,cookies=cookies)
+    #response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)#,cookies=cookies)
     #data=json.loads(response.text)
     try:
-        data=response.json()
+        #data=response.json()
+        url = f"https://www.sofascore.com/api/v1/player/{pid}/events/last/{ind}"
+        parsed = urlparse(url)
+        conn = http.client.HTTPSConnection(parsed.netloc)
+        conn.request("GET", parsed.path)
+        res = conn.getresponse()
+        data = res.read()
+        jdata = json.loads(data.decode("utf-8"))
     except Exception:
         st.write(response.status_code)
-    yes = data
+    yes = jdata
     #yes=json.loads(response.text)
 
     a = yes["leagues"]
