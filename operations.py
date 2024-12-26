@@ -134,25 +134,26 @@ def match_id_init():
     }
     params = {
     'date': z,
-    #'timezone': 'Asia/Calcutta',
-    #'ccode3': 'USA_CA',
+    'timezone': st.session_state.timezone,
+    'ccode3': st.session_state.ccode3,
     }
     #requests.get("https://www.fotmob.com/_next/static/chunks/pages/_app-8fa88b1f9d016078.js")
     #st.write(diction)
     #print(diction)
-    #response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)#,cookies=cookies)
+    response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)#,cookies=cookies)
     #data=json.loads(response.text)
     try:
         #data=response.json()
-        st.write(st.session_state)
-        url = f"https://www.fotmob.com/api/matches?date=20241226&timezone=Asia%2FCalcutta&ccode3=IND"
-        parsed = urlparse(url)
-        conn = http.client.HTTPSConnection(parsed.netloc)
-        conn.request("GET", parsed.path)
-        res = conn.getresponse()
-        data = res.read()
+        #st.write(st.session_state)
+        #url = f"https://www.fotmob.com/api/matches?date=20241226&timezone=Asia%2FCalcutta&ccode3=IND"
+        #parsed = urlparse(url)
+        #conn = http.client.HTTPSConnection(parsed.netloc)
+        #conn.request("GET", parsed.path)
+        #res = conn.getresponse()
+        #data = res.read()
+        data=json.loads(response.text)
         st.write(data)
-        jdata = json.loads(data.decode("utf-8"))
+        #jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
     yes = jdata
