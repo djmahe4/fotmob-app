@@ -150,6 +150,7 @@ def match_id_init():
         conn.request("GET", parsed.path)
         res = conn.getresponse()
         data = res.read()
+        st.write(data)
         jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
