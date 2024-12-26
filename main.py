@@ -13,9 +13,15 @@ st.write(datetime.today())
 # Define a button to start the analysis after choices are made
 if 'match_selected' not in st.session_state:
     st.session_state.match_selected = False
+    st.session_state.timezone = False
+    st.session_state.ccode3 = False
 
 if st.button("Start"):
-    st.write(requests.get("https://www.fotmob.com/api/mylocation").json())
+    #st.write(requests.get("https://www.fotmob.com/api/mylocation").json())
+    det=requests.get("https://www.fotmob.com/api/mylocation").json()
+    st.session_state.timezone = det['timezone']
+    st.session_state.ccode3 = det['ccode']
+    st.write(st.session_state)
     contents = match_id_init()  # Only calls match_id_init once
     choices = {}
     for x in contents:
