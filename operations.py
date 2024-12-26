@@ -140,9 +140,9 @@ def match_id_init():
     #requests.get("https://www.fotmob.com/_next/static/chunks/pages/_app-8fa88b1f9d016078.js")
     #st.write(diction)
     #print(diction)
-    st.write(params)
+    #st.write(params)
     response = requests.get('https://www.fotmob.com/api/matches', params=params, headers=headers)#,cookies=cookies)
-    st.write(response.status_code)
+    #st.write(response.status_code)
     #data=json.loads(response.text)
     try:
         #data=response.json()
@@ -154,7 +154,7 @@ def match_id_init():
         #res = conn.getresponse()
         #data = res.read()
         data=json.loads(response.text)
-        st.write(data)
+        #st.write(data)
         #jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
