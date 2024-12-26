@@ -20,7 +20,7 @@ if st.button("Start"):
     #st.write(requests.get("https://www.fotmob.com/api/mylocation").json())
     det=requests.get("https://www.fotmob.com/api/mylocation").json()
     st.session_state.timezone = det['timezone']
-    st.session_state.ccode3 = det['ccode']
+    st.session_state.ccode3 = det['ccode3']
     st.write(st.session_state)
     contents = match_id_init()  # Only calls match_id_init once
     choices = {}
