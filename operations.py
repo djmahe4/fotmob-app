@@ -158,7 +158,7 @@ def match_id_init():
         #jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
-    yes = jdata
+    yes = data
     #yes=json.loads(response.text)
 
     a = yes["leagues"]
