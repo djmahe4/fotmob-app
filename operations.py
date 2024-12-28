@@ -51,7 +51,7 @@ def performance(id,vs):
         return total/matches
     except ZeroDivisionError:
         return 0
-def match_predict(match_id,st):
+def match_predict(match_id,st=st):
     params = {
         'matchId': f"{match_id}",
     }
@@ -118,25 +118,27 @@ def match_id_init():
     }
 
     headers = {
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-    # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; g_state={"i_p":1732878399756,"i_l":4}; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A940c%3A1f0c%3A8246%3Af514%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6ImJlMWM1ZmU0LTdlYTMtNDVkMi05Mjg1LWNmYzk4MzZkOGNhZCIsImMiOjE3MzUxOTQ5MzMyMTgsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; _ga_G0V1WDW9B2=GS1.1.1735194936.4.0.1735194936.0.0.0; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735194940:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735194940:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol8BUbkmcftEZYcFQI17R3olnjDZM1aqPyVv3iWswxeRFVD17FB5bNJ3v6eWTRjgm7YIoAia9eYIRi54mTogjl7ecSXP5QeUGBB-pFXB2Dz9Bt66TYF4mU2LFcplEn3VtnUtljhSr6OXU3hBe5dYVRu3rwSi_g%3D%3D%22%5D%5D; cto_bundle=6VXOlF9XdHpnQ0lrS0x2VUdmcU93UGZNUWdyWFhzJTJCNkNndXAlMkJXWndpOHI0SEF5NFFpOExtMlZoWUglMkJ6VW1MMzJGMGd3WHhraWpNajNyTm1yRDhpZnBKRDVnaXBsSnl0anF0MWx6QXBiZHZvQ1NXMmhxd1g4YndzelpJNjVoblBZWHlRYXUlMkZHNVI4NXFqbk9FdmxuREFNMFVVdyUzRCUzRA',
-    'priority': 'u=1, i',
-    'referer': 'https://www.fotmob.com/',
-    'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjQxMjI2JnRpbWV6b25lPUFzaWElMkZDYWxjdXR0YSZjY29kZTM9SU5EIiwiY29kZSI6MTczNTE5NDk0NTc2NCwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjlDOTE4MDBENkYzNjhBOUYwREQ3QThGMEVGMzM3RUU4In0=',
-}
+        'accept': '*/*',
+        'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
+        # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A656f%3Ae4c5%3A6e5d%3Afccd%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; FCNEC=%5B%5B%22AKsRol8JTFw79ztvqk-5Oj_ln5gMDeR-dbmk8vkQL_pSpwrxMFGSJVIONhQ24JMi7_y3sIWohteiYErlSoBiP_SNI84QAb-CHeTUSR6HlD12jIfkx98d_AOklODngKjut0UWdUVOXycSDwNy5CFXKXpeC45VripyUw%3D%3D%22%5D%5D; cto_bundle=hI4bU19XdHpnQ0lrS0x2VUdmcU93UGZNUWdyU0tWUmVuOE9LbHRZWU1LU1ZlQkhwUWxTUmIxZE82U1VTbGdQb0Rkbk9VbUNuYTFldDhiTDZDZlJrNHVzJTJGNW1udXZYbVEyaW1PRVVsWjh2VnhjYlolMkYlMkZ0Q0hNJTJCc2JKRjlQUGE5Qkx3N0R5VnV0SUdua1B2Zmp4MXJINDVtUDVYdyUzRCUzRA; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735313335:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735313335:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; _ga_G0V1WDW9B2=GS1.1.1735320316.14.0.1735320316.0.0.0',
+        'if-none-match': '"nh4aej8woii6g"',
+        'priority': 'u=1, i',
+        'referer': 'https://www.fotmob.com/',
+        'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+        'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjQxMjI3JnRpbWV6b25lPUFzaWElMkZDYWxjdXR0YSZjY29kZTM9SU5EIiwiY29kZSI6MTczNTMyMDM5NTUxNSwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjAwMEI2MDQxMkI4QkVERjA2MThGMDI2OEQ1RUFGNEQyIn0=',
+    }
     params = {
     'date': z,
     'timezone': st.session_state.timezone,
     'ccode3': st.session_state.ccode3,
     }
+    st.write(params)
     #requests.get("https://www.fotmob.com/_next/static/chunks/pages/_app-8fa88b1f9d016078.js")
     #st.write(diction)
     #print(diction)
@@ -153,8 +155,9 @@ def match_id_init():
         #conn.request("GET", parsed.path)
         #res = conn.getresponse()
         #data = res.read()
-        data=json.loads(response.text)
-        #st.write(data)
+        #data=json.loads(response.text)
+        data=response.json()
+        st.write(data)
         #jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
@@ -192,7 +195,7 @@ def match_id_init():
     #return contents
     return b
 
-def analyze_player_stats(stats,st,name):
+def analyze_player_stats(stats,name,st=st):
     analysis = f"**{name}:**\n"
     # x=stats["Player"].index(i)
     isgoalie = False
@@ -379,7 +382,7 @@ def analyze_player_stats(stats,st,name):
         analysis += "- A performance with both positive and negative aspects\n\n"
     st.write(analysis)
 
-def headtohead(id,teams,score,st):
+def headtohead(id,teams,score,st=st):
     file=open("impstats.json",'r')
     x=json.load(file)
     t1=[]
@@ -662,7 +665,7 @@ def get_player_stats(a,records):
     for i in y:
         subdataext(i, b,records)
     return records
-def plotting(records,st):
+def plotting(records,st=st):
     new_rec={}
     colors = sns.color_palette("husl", 12)
     for i in records:
