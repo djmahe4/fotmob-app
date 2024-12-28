@@ -67,7 +67,7 @@ if st.session_state.choices:
     types_of_analysis = ["head to head", "playerwise", "future prediction", "numerology"]
     analysis_choice = st.selectbox("Analysis Type", types_of_analysis)
     
-    if st.button("Start analysis"):
+    if st.button("Start analysis") and st.session_state.match_selected:
         st.write(f"Selected analysis type: {analysis_choice}")
         st.session_state.toa = analysis_choice
 
