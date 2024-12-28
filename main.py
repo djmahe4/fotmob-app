@@ -54,7 +54,7 @@ if st.button("Start") and not st.session_state.switch:
     #st.session_state.match_selected = True
 
 # Show dropdowns only after the "Start Analysis" button is clicked and matches are selected
-if st.session_state.choices:
+if st.session_state.choices and not st.session_state.mmid:
     choice = st.selectbox("Match", list(st.session_state.choices.keys()))
     match_id = st.session_state.choices[choice]
     st.write(f"Selected match: {choice}")
