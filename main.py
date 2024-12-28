@@ -32,6 +32,7 @@ if 'match_selected' not in st.session_state or not on:
     st.session_state.switch = False
     st.session_state.pname = None
     st.session_state.confirmed = False
+    st.session_state.choices=None
 
 # Button to start the analysis after choices are made (only if toggle is off)
 if st.button("Start") and not st.session_state.switch:
