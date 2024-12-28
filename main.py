@@ -50,15 +50,15 @@ if st.button("Start") and not st.session_state.switch:
                 choices[match] = list(z.keys())[0]
 
     st.session_state.choices = choices
-    st.session_state.match_selected = True
+    #st.session_state.match_selected = True
 
 # Show dropdowns only after the "Start Analysis" button is clicked and matches are selected
-if st.session_state.match_selected:
+if st.session_state.choices:
     choice = st.selectbox("Match", list(st.session_state.choices.keys()))
     match_id = st.session_state.choices[choice]
     st.write(f"Selected match: {choice}")
     st.write(f"Match ID: {match_id}")
-    
+    st.session_state.match_selected = True
     # Store selected match ID in session state
     st.session_state.mmid = match_id
     
