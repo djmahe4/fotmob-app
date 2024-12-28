@@ -13,7 +13,7 @@ st.write(datetime.today())
 
 # Toggle for individual stats analysis
 on = st.toggle("Keep it on to analyze individual stats..")
-if on:
+if on==True:
     st.session_state.switch = True
     det = requests.get("https://www.fotmob.com/api/mylocation").json()
     st.write(det)
