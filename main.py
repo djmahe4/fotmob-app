@@ -61,7 +61,7 @@ if st.session_state.choices:
     if st.button("match selected"):
         st.session_state.match_selected = True
     # Store selected match ID in session state
-    st.session_state.mmid = match_id
+        st.session_state.mmid = match_id
     
     types_of_analysis = ["head to head", "playerwise", "future prediction", "numerology"]
     analysis_choice = st.selectbox("Analysis Type", types_of_analysis)
