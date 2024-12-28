@@ -58,7 +58,8 @@ if st.session_state.choices:
     match_id = st.session_state.choices[choice]
     st.write(f"Selected match: {choice}")
     st.write(f"Match ID: {match_id}")
-    st.session_state.match_selected = True
+    if st.button("match selected"):
+        st.session_state.match_selected = True
     # Store selected match ID in session state
     st.session_state.mmid = match_id
     
