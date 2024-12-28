@@ -173,7 +173,7 @@ def match_id_init():
         #data = res.read()
         #data=json.loads(response.text)
         data=response.json()
-        st.write(data)
+        #st.write(data)
         #jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
