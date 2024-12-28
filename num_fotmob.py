@@ -15,6 +15,7 @@ import os
 import json
 # from operations import url_extract
 from bs4 import BeautifulSoup
+import streamlit as st
 
 
 def plot_biorhythm_chart(combined_points, dates, name, st, cycle_label="Combined"):
