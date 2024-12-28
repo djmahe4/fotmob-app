@@ -79,7 +79,7 @@ def birth_get(id="4534613"):
         'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjQxMjI3JnRpbWV6b25lPUFzaWElMkZDYWxjdXR0YSZjY29kZTM9SU5EIiwiY29kZSI6MTczNTMyMDM5NTUxNSwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjAwMEI2MDQxMkI4QkVERjA2MThGMDI2OEQ1RUFGNEQyIn0=',
     }
     #gem = extraction(requests.get(f'https://www.fotmob.com/match/{id}',headers=headers).text)['props']['pageProps']
-    st.write(gem)
+    #st.write(gem)
     # print(gem.keys())
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
     gem = response.json()
