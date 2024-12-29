@@ -32,6 +32,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     }
     try:
         response = requests.get('https://www.fotmob.com/api/playerData', params=params, headers=headers)
+        response.json()
     except requests.JSONDecodeError:
         st.write("Waiting")
         time.sleep(5)
