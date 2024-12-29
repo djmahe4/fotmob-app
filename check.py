@@ -226,7 +226,9 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     plt.title(f'Season Stats of {name.title()} in {season}', fontsize=20, color=random.choice(palette))
     plt.xlabel('Stats', fontsize=15, color='green')
     plt.ylabel('Percentile ranking', fontsize=15, color='red')
-
+    # Add an annotation
+    plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
+            fontsize=12, ha='left', va='bottom', alpha=0.4)
     # Adjust the subplot parameters to give the x-axis labels more space
     plt.subplots_adjust(bottom=0.4)
     st.pyplot(plt)
