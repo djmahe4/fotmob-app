@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import random
 import seaborn as sns
+import time
 
 def get_season_stats_destruct():
     st.session_state.pposition=None
@@ -29,8 +30,12 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     params = {
         'id': f'{id}',
     }
-
-    response = requests.get('https://www.fotmob.com/api/playerData', params=params, headers=headers)
+    try:
+        response = requests.get('https://www.fotmob.com/api/playerData', params=params, headers=headers)
+    except requests.JSONDecodeError:
+        st.write("Waiting")
+        time.sleep(5)
+        get_season_stats(name,id.season)
     for i in response.json()['statSeasons'][0]['tournaments']:
         if i['name']==season:
             print(i["entryId"])
