@@ -36,7 +36,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     except requests.JSONDecodeError:
         st.write("Waiting")
         time.sleep(5)
-        get_season_stats(name,id.season)
+        get_season_stats(name,id,season)
     for i in response.json()['statSeasons'][0]['tournaments']:
         if i['name']==season:
             print(i["entryId"])
