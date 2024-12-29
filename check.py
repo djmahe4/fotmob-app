@@ -12,20 +12,20 @@ def get_season_stats_destruct():
     st.session_state.per90=False
 def get_season_stats(name,id=1083323,season="LaLiga"):
     headers = {
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-        # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A656f%3Ae4c5%3A6e5d%3Afccd%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6IjUwZjc0ZWFhLTg2MzEtNGI5ZC1iN2FmLTI0NzE5OGVmMWQ1MCIsImMiOjE3MzUzMDQ3Nzc2MDcsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735304784:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735304784:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol8JTFw79ztvqk-5Oj_ln5gMDeR-dbmk8vkQL_pSpwrxMFGSJVIONhQ24JMi7_y3sIWohteiYErlSoBiP_SNI84QAb-CHeTUSR6HlD12jIfkx98d_AOklODngKjut0UWdUVOXycSDwNy5CFXKXpeC45VripyUw%3D%3D%22%5D%5D; cto_bundle=hI4bU19XdHpnQ0lrS0x2VUdmcU93UGZNUWdyU0tWUmVuOE9LbHRZWU1LU1ZlQkhwUWxTUmIxZE82U1VTbGdQb0Rkbk9VbUNuYTFldDhiTDZDZlJrNHVzJTJGNW1udXZYbVEyaW1PRVVsWjh2VnhjYlolMkYlMkZ0Q0hNJTJCc2JKRjlQUGE5Qkx3N0R5VnV0SUdua1B2Zmp4MXJINDVtUDVYdyUzRCUzRA; _ga_G0V1WDW9B2=GS1.1.1735304777.11.1.1735304821.0.0.0',
-        'priority': 'u=1, i',
-        'referer': f'https://www.fotmob.com/players/{id}/{"-".join(name.lower().split())}',
-        'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-        'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyRGF0YT9pZD0xMDgzMzIzIiwiY29kZSI6MTczNTMwNDgyMjcxOSwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IkM4MkQwMzAzRDc0QUEzMEQzRDQ5RjI2QzM4Q0NGMzBGIn0=',
-    }
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
+    # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; g_state={"i_p":1737618382846,"i_l":4}; panoramaId_expiry=1736003449444; panoramaId=5c722abb08b9f1805376473591f916d539387d1ff0076b4717d6c24ad5065d37; panoramaIdType=panoIndiv; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3Abc05%3Aad0d%3A5d4b%3A4802%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6IjE2NjJhMTNjLTIzM2ItNGI1ZC04NmMxLWVmODYxOTgxMmNlYyIsImMiOjE3MzU0NDI2MTI4ODAsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; cto_bundle=1DwFRV9XdHpnQ0lrS0x2VUdmcU93UGZNUWdzTHJmN0JrWGJ2SHRLWHo1cndhWiUyQnU1WjZDJTJCVERkMUlIVDVJWURvUGdTMFQlMkJMbXRjQU54ZXBmZGw2QXlKWWlMUnpydmxUNGl6Y2FnZXdjOGgwaTd2Mm1oQmp5YUZWSjkyTzZpMHZUZEV5Q1NwWU9reUMlMkI0QnNEWkZyREpSVW5nQSUzRCUzRA; FCNEC=%5B%5B%22AKsRol8dfE0ocUW_ZVrdxyczwL6vMQnD0yA-5vbJtpQuCHQvOfD7D4ZK2DdRu-1MAS8ksKRHRqlLIzVzJHTo5t5Ix6in_jYagItNoz0BmkVWjJFOTbRiGKyFPAiekYHAkY-O82HKbQ56O3YdmB3a6oTRCQXQKtVucw%3D%3D%22%5D%5D; _ga_G0V1WDW9B2=GS1.1.1735442611.17.1.1735444281.0.0.0; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735444291:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735444291:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn',
+    'priority': 'u=1, i',
+    'referer': 'https://www.fotmob.com/players/169718/wojciech-szczesny',
+    'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyRGF0YT9pZD0xNjk3MTgiLCJjb2RlIjoxNzM1NDQ0Mjg4MDA1LCJmb28iOiJlOTZiNjBhMjEifSwic2lnbmF0dXJlIjoiNUI4QjQzQTdDRjQ5NDFGQjJDNDk4NzlBMzMxNzU4N0QifQ==',
+}
 
     params = {
         'id': f'{id}',
