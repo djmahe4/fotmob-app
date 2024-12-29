@@ -598,7 +598,10 @@ def match_details(id):
     anew=gem
     b = a['playerStats']
     lin = a['lineup']
-    sub = lin['homeTeam']['subs']
+    try:
+        sub = lin['homeTeam']['subs']
+    except:
+        st.write(lin)
     for i in sub:
         try:
             if i["performance"]['substitutionEvents'][0]['time']  < 90:
