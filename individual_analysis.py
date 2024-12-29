@@ -43,7 +43,7 @@ def squad_extract(id):
 
     params = {
         'id': f'{id}',
-        'ccode3': f'{st.session_state.ccode3}',
+        'ccode3': f'{st.session_state.country}',
     }
 
     response = requests.get('https://www.fotmob.com/api/teams', params=params, headers=headers)
