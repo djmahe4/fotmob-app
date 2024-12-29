@@ -164,15 +164,15 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     }
     if st.session_state.pposition:  # Only display if a position has been selected
         st.write(f"Selected position: {st.session_state.pposition}")
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),None)
     #if pos != st.session_state.pposition: #check if the choice has changed
         
         #st.session_state.choice2 = pos
     if st.button("Position selected"):
         st.session_state.pposition=pos
-    else:
-        st.session_state.pposition = None
-        st.session_state.per90 = None
+    #else:
+        #st.session_state.pposition = None
+        #st.session_state.per90 = None
     present=[]
     necessary = []
     for i in b[:-1]:
@@ -187,15 +187,15 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     #p9 = input("Per 90 stats (y/n):")
     if st.session_state.per90:  # Only display if a position has been selected
         st.write(f"Per 90: {st.session_state.per90}")
-    p9=st.selectbox("Per90?",[True,False])
+    p9=st.selectbox("Per90?",[True,False],None)
     #if pos != st.session_state.per90: #check if the choice has changed
         #st.session_state.pposition = None
         
         #st.session_state.choice2 = pos
     if st.button("Done.."):
         st.session_state.per90=p9
-    else:
-        st.session_state.per90 = None
+    #else:
+        #st.session_state.per90 = None
     # Convert the data into a pandas DataFrame
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
