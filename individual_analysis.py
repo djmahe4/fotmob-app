@@ -34,7 +34,7 @@ def psearch(name):
 def squad_extract(id):
     headers = {
         'sec-ch-ua-platform': '"Windows"',
-        'Referer': 'https://www.fotmob.com/teams/1642068/squad/auckland-fc',
+        'Referer': f'https://www.fotmob.com/teams/{id}/squad/{str(st.session_state.opt3).lower()}',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
         'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvdGVhbXM/aWQ9MTY0MjA2OCZjY29kZTM9SU5EIiwiY29kZSI6MTczNTI3MDI5MzM3MywiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjVFMzk4QTVGMkU0Q0Q4OUIwRUNCOTU2MDc0RjE2NkI3In0=',
         'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
