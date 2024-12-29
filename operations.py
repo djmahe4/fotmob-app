@@ -531,8 +531,8 @@ def subdataext(id,record,records):
         print(id)
     name=id['name']
     #fname=name['fullName']
-    st.write("id",id)
-    st.write("x":x)
+    if x is None:
+        st.warning("Stats not available")
     stats=x[str(id['id'])]["stats"]
     #print("stats",stats)
     stats0=stats[:]
