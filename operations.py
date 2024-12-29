@@ -35,7 +35,15 @@ def assesment(dict,vs):
         dict.update({x:performance(dict[x],vs)})
     return sorted(dict.items(),key=lambda x:x[1])
 def performance(id,vs):
-    response=requests.get(f"https://www.fotmob.com/api/playerData?id={id}")
+    headers = {
+            'sec-ch-ua-platform': '"Windows"',
+            'Referer': 'https://www.fotmob.com/players/1083323/pedri',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyU3RhdHM/cGxheWVySWQ9MTA4MzMyMyZzZWFzb25JZD0wLTEmaXNGaXJzdFNlYXNvbj1mYWxzZSIsImNvZGUiOjE3MzU0NDg2MjI1NDIsImZvbyI6ImU5NmI2MGEyMSJ9LCJzaWduYXR1cmUiOiIzM0FENzdFNzI5NTk2OTVBRDFGRERFM0JEQjMxQkFFOCJ9',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+    }
+    response=requests.get(f"https://www.fotmob.com/api/playerData?id={id}",headers=headers)
     recent=json.loads(response.text)['recentMatches']
     #recent=response.json()['recentMatches']
     total=0
