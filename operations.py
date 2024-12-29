@@ -531,7 +531,8 @@ def subdataext(id,record,records):
         print(id)
     name=id['name']
     #fname=name['fullName']
-    st.write(id,x)
+    st.write("id",id)
+    st.write("x":x)
     stats=x[str(id['id'])]["stats"]
     #print("stats",stats)
     stats0=stats[:]
