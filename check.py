@@ -390,6 +390,9 @@ def season_comparison(id):
             sns.scatterplot(data=df, x=stat1, y=stat2, palette='hls')  # hls
             sns.set_style("whitegrid")
             plt.title(f'{list(st.session_state.returned.keys())[0]} {stat1} vs {stat2}', fontsize=14, color=color1)
+            # Add an annotation
+            plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
+            fontsize=12, ha='left', va='bottom', alpha=0.4)
             plt.xlabel(stat1, fontsize=12, color=color2)
             plt.ylabel(stat2, fontsize=12, color=color3)
             for i, player in enumerate(common_players):
