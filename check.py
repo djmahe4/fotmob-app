@@ -162,12 +162,14 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
+    if st.session_state.pposition:  # Only display if a position has been selected
+        st.write(f"Selected position: {st.session_state.pposition}")
     pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    if pos != st.session_state.pposition: #check if the choice has changed
+        st.session_state.pposition = None
+        st.session_state.per90 = False
+        #st.session_state.choice2 = pos
     if st.button("Position selected"):
-        st.session_state.pposition=pos
-        #st.rerun()
-    else:
-        time.sleep(10)
         st.session_state.pposition=pos
     present=[]
     necessary = []
@@ -181,7 +183,13 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     print(necessary)
     print(present)
     #p9 = input("Per 90 stats (y/n):")
+    if st.session_state.per90:  # Only display if a position has been selected
+        st.write(f"Per 90: {st.session_state.per90}")
     p9=st.selectbox("Per90?",[True,False])
+    if pos != st.session_state.per90: #check if the choice has changed
+        #st.session_state.pposition = None
+        st.session_state.per90 = None
+        #st.session_state.choice2 = pos
     if st.button("Done.."):
         st.session_state.per90=p9
     # Convert the data into a pandas DataFrame
