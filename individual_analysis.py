@@ -56,25 +56,18 @@ def squad_extract(id):
     return players
 def season_team_extract(id):
     headers = {
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-        # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; cto_bundle=6VXOlF9XdHpnQ0lrS0x2VUdmcU93UGZNUWdyWFhzJTJCNkNndXAlMkJXWndpOHI0SEF5NFFpOExtMlZoWUglMkJ6VW1MMzJGMGd3WHhraWpNajNyTm1yRDhpZnBKRDVnaXBsSnl0anF0MWx6QXBiZHZvQ1NXMmhxd1g4YndzelpJNjVoblBZWHlRYXUlMkZHNVI4NXFqbk9FdmxuREFNMFVVdyUzRCUzRA; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3Aeca6%3A44f2%3Affeb%3A2379%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735215885:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735215885:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol9x49FyUytLneK-aWqxeeEukUZ425IquwX27r3DFzxlG02V8gwuI7p5sl3hzFKyHboZQSSPnnEhh602-Crqx6gGbt92MChSCA9Frm79hVqPUSQsyp2P8LW_z2r7Z1Qvsc--dRqVETlsVsGa26fLK1fIfabuMA%3D%3D%22%5D%5D; _hjSession_2585474=eyJpZCI6IjE0MjE0ZTE1LWUyODctNDE0Yy1hM2RjLTUzZWY1M2EwM2Q0NiIsImMiOjE3MzUyMzc5NDAxMDMsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; _ga_G0V1WDW9B2=GS1.1.1735237938.8.1.1735237941.0.0.0',
-        'priority': 'u=1, i',
-        'referer': 'https://www.fotmob.com/leagues/113/overview/league',
-        'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-        'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbGVhZ3Vlcz9pZD0xMTMmY2NvZGUzPUlORCZuZXdVZWZhQnJhY2tldD10cnVlIiwiY29kZSI6MTczNTIzNzk0MTA1OCwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IkJDRERBMkY3MjNBODI3N0FGNERDOTUwNkFDQzcxRjcxIn0=',
+    'sec-ch-ua-platform': '"Windows"',
+    'Referer': 'https://www.fotmob.com/leagues/42/overview/champions-league',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbGVhZ3Vlcz9pZD00MiZjY29kZTM9SU5EJm5ld1VlZmFCcmFja2V0PXRydWUiLCJjb2RlIjoxNzM1NDA2NTQzOTYzLCJmb28iOiJlOTZiNjBhMjEifSwic2lnbmF0dXJlIjoiNTk1MUEwRTIwRDE1NjFFQkE5OTgyRjk2RTdFMTRFNDIifQ==',
+    'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
     }
 
     params = {
         'id': f'{id}',
         'ccode3': f'{st.session_state.ccode3}',
-         'newUefaBracket': 'true',
+         #'newUefaBracket': 'true',
     }
 
     response = requests.get('https://www.fotmob.com/api/leagues', params=params, headers=headers)
