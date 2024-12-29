@@ -600,8 +600,8 @@ def match_details(id):
     lin = a['lineup']
     try:
         sub = lin['homeTeam']['subs']
-    except:
-        st.write(lin)
+    except :
+        st.warning("Stats not Available")
     for i in sub:
         try:
             if i["performance"]['substitutionEvents'][0]['time']  < 90:
