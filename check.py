@@ -165,6 +165,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
     if st.button("Position selected"):
         st.session_state.pposition=pos
+        st.rerun()
     else:
         st.session_state.pposition=pos
     present=[]
