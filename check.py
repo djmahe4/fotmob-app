@@ -168,8 +168,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     #if pos != st.session_state.pposition: #check if the choice has changed
         
         #st.session_state.choice2 = pos
-    if st.button("Position selected"):
-        st.session_state.pposition=pos
+    #if st.button("Position selected"):
+        #st.session_state.pposition=pos
     #else:
         #st.session_state.pposition = None
         #st.session_state.per90 = None
@@ -192,8 +192,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         #st.session_state.pposition = None
         
         #st.session_state.choice2 = pos
-    if st.button("Done.."):
-        st.session_state.per90=p9
+    #if st.button("Done.."):
+        #st.session_state.per90=p9
     #else:
         #st.session_state.per90 = None
     # Convert the data into a pandas DataFrame
