@@ -32,7 +32,9 @@ def plot_biorhythm_chart(combined_points, dates, name, st, cycle_label="Combined
 
     # Add dates below the x-axis (optional, adjust spacing as needed)
     plt.xticks(range(len(combined_points)), [d[:5] for d in dates], rotation=0, ha='center', va='bottom', fontsize=6)
-
+    # Add an annotation
+    plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
+            fontsize=12, ha='left', va='bottom', alpha=0.4)
     plt.xlabel("Day")  # Adjust label if needed
     plt.ylabel("Biorhythm Level")
     plt.title(f"Biorhythm Chart ({name})")
