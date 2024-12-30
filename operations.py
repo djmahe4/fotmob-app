@@ -205,7 +205,7 @@ def match_id_init():
     #return contents
     return b
 
-def analyze_player_stats(stats,name,st=st):
+def analyze_player_stats(stats,name,st):
     analysis = f"**{name}:**\n"
     # x=stats["Player"].index(i)
     isgoalie = False
