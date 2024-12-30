@@ -46,7 +46,7 @@ if st.button("Start") and not st.session_state.switch:
     st.session_state.timezone = det['timezone']
     st.session_state.ccode3 = det['ccode3']
 
-    contents = match_id_init()
+    contents = match_id_init(st)
     choices = {}
     for x in contents:
         for y in x.values():
