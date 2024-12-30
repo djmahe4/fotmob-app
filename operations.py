@@ -12,7 +12,7 @@ import http.client
 from urllib.parse import urlparse
 import http.cookiejar
 from num_fotmob import extraction
-import streamlit as st
+#import streamlit as st
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 def url_extract(params="",uri="",headers=""):
