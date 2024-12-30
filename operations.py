@@ -59,7 +59,7 @@ def performance(id,vs):
         return total/matches
     except ZeroDivisionError:
         return 0
-def match_predict(match_id,st=st):
+def match_predict(match_id,st):
     params = {
         'matchId': f"{match_id}",
     }
