@@ -110,7 +110,7 @@ def match_predict(match_id,st):
     print(aplayers)
     st.write(aplayers)
 
-def match_id_init():
+def match_id_init(st):
     #requests.get("https://www.fotmob.com/matches")
     #global st
  
