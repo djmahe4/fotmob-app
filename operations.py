@@ -72,6 +72,7 @@ def match_predict(match_id,st):
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
     }
+    requests.get('https://www.fotmob.com/',headers=headers)
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
     gem = response.json()
     # print(gem.keys())
