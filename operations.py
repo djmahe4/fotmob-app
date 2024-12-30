@@ -392,7 +392,7 @@ def analyze_player_stats(stats,name,st):
         analysis += "- A performance with both positive and negative aspects\n\n"
     st.write(analysis)
 
-def headtohead(id,teams,score,st=st):
+def headtohead(id,teams,score,st):
     file=open("impstats.json",'r')
     x=json.load(file)
     t1=[]
@@ -680,7 +680,7 @@ def get_player_stats(a,records):
     for i in y:
         subdataext(i, b,records)
     return records
-def plotting(records,st=st):
+def plotting(records,st):
     new_rec={}
     colors = sns.color_palette("husl", 12)
     for i in records:
