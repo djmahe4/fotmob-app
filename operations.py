@@ -144,8 +144,8 @@ def match_id_init(st):
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
         }
-requests.get('https://www.fotmob.com/',headers=headers)
-requests.get('https://www.fotmob.com',headers=headers)
+    requests.get('https://www.fotmob.com/',headers=headers)
+    #requests.get('https://www.fotmob.com',headers=headers)
     params = {
     'date': z,
     'timezone': st.session_state.timezone,
