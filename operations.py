@@ -137,13 +137,20 @@ def match_id_init(st):
     }
 
     headers = {
-            'sec-ch-ua-platform': '"Windows"',
-            'Referer': 'https://www.fotmob.com',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-            'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyU3RhdHM/cGxheWVySWQ9MTA4MzMyMyZzZWFzb25JZD0wLTEmaXNGaXJzdFNlYXNvbj1mYWxzZSIsImNvZGUiOjE3MzU0NDg2MjI1NDIsImZvbyI6ImU5NmI2MGEyMSJ9LCJzaWduYXR1cmUiOiIzM0FENzdFNzI5NTk2OTVBRDFGRERFM0JEQjMxQkFFOCJ9',
-            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-mobile': '?0',
-        }
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
+    # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; g_state={"i_p":1729939157741,"i_l":3}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3A1570%3A396e%3Aec8b%3Ab96e%3A7a7f%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; panoramaId_expiry=1730956138989; panoramaId=a7e77b7fe87c1cd7d758189a0e4416d539384ed4a4570b7f8b2da0a1f43435c9; panoramaIdType=panoIndiv; cto_bundle=NyJUGV9XdHpnQ0lrS0x2VUdmcU93UGZNUWd2RXpTRzVzVjM5V3JBbkRWYmQyOTVtZTFyejJXJTJGS0dKZjBoUDRYc1phakI5UWJYaE0xdVhRN1Fzdjhvc3Y3WjJPa3RKZ3ZZTiUyRlRRMzh5ekVRM2lORVV4Q1QlMkZMRVlvVGJia01Iak1aa3VYdTAwcGpBVklURHdQTXZqaHppYjR6emclM0QlM0Q; FCNEC=%5B%5B%22AKsRol9qpaNl4wm4MHOVezEtDiaTFBAh353e5-QjRWlllse4_D_907sNl4siF5a2ML9LC0BCsULBHscW6NdB9Oj3Q-lQaFmNL4_4kj-D24LRG9R0I-N0lL0M4ilmKgp11LNCbAqcSimus1GuGQcIS4nFQCG0hg0QUw%3D%3D%22%5D%5D; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1730353286:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1730353286:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; _ga_G0V1WDW9B2=GS1.1.1730351331.8.1.1730353576.0.0.0',
+    'priority': 'u=1, i',
+    'referer': 'https://www.fotmob.com/',
+    'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
+    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDY1NjQzMyIsImNvZGUiOjE3MzAzNTM1Nzg3Nzd9LCJzaWduYXR1cmUiOiJFRjEwQ0RCMTRGMjBCMTVGMDYxRTAxNjQ3MDYzRTc2NSJ9',
+    }
     requests.get('https://www.fotmob.com/',headers=headers)
     #requests.get('https://www.fotmob.com',headers=headers)
     params = {
