@@ -92,13 +92,13 @@ if st.session_state.match_selected:
 # Trigger Analysis
 if st.session_state.toa and st.session_state.switch==False:
     if st.session_state.toa == "head to head":
-        a, teamnames, score, records = match_details(st.session_state.mmid)
-        headtohead(st.session_state.mmid, teamnames, score)
+        a, teamnames, score, records = match_details(st.session_state.mmid,st)
+        headtohead(st.session_state.mmid, teamnames, score,st)
     elif st.session_state.toa == "playerwise":
-        a, teamnames, score, records = match_details(st.session_state.mmid)
+        a, teamnames, score, records = match_details(st.session_state.mmid,st)
         headtohead(st.session_state.mmid, teamnames, score)
-        get_player_stats(a, records)
-        plotting(records)
+        get_player_stats(a, records,st)
+        plotting(records,st)
     elif st.session_state.toa == "future prediction":
         match_predict(st.session_state.mmid)
     elif st.session_state.toa == "numerology":
