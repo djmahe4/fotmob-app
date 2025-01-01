@@ -118,7 +118,7 @@ def match_id_init(st):
     x = date.today()
     y = str(x).split('-')
     z = ''
-    st.write(requests.get('https://www.fotmob.com').headers)
+    
     for i in y:
         z = z + i
 
@@ -143,7 +143,7 @@ def match_id_init(st):
             'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyU3RhdHM/cGxheWVySWQ9MTA4MzMyMyZzZWFzb25JZD0wLTEmaXNGaXJzdFNlYXNvbj1mYWxzZSIsImNvZGUiOjE3MzU0NDg2MjI1NDIsImZvbyI6ImU5NmI2MGEyMSJ9LCJzaWduYXR1cmUiOiIzM0FENzdFNzI5NTk2OTVBRDFGRERFM0JEQjMxQkFFOCJ9',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
-        }
+        }requests.get('https://www.fotmob.com',headers=headers)
     params = {
     'date': z,
     'timezone': st.session_state.timezone,
