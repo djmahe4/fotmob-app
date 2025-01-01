@@ -118,7 +118,7 @@ def match_id_init(st):
     x = date.today()
     y = str(x).split('-')
     z = ''
-    st.write(requests.head('https://www.fotmob.com').headers)
+    st.write(requests.get('https://www.fotmob.com').headers)
     for i in y:
         z = z + i
 
