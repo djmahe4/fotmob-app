@@ -149,7 +149,7 @@ def match_id_init(st):
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDY1NjQzMyIsImNvZGUiOjE3MzAzNTM1Nzg3Nzd9LCJzaWduYXR1cmUiOiJFRjEwQ0RCMTRGMjBCMTVGMDYxRTAxNjQ3MDYzRTc2NSJ9',
+    'X-Amz-Cf-Id': '2-OrE9J7BUbFuPHDSW_PoNFCnEAHp8i38gd9Z3MNQkHlwPV_UdztWw==',
     }
     requests.get('https://www.fotmob.com/',headers=headers)
     #requests.get('https://www.fotmob.com',headers=headers)
