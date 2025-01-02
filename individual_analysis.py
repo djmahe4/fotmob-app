@@ -1,6 +1,7 @@
 import streamlit as st
 import requests,json
 from check import get_season_stats,season_comparison,get_season_stats_destruct,season_comparison_destruct
+from operations import retry
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 def psearch(name):
@@ -128,9 +129,12 @@ def get_data(type): # player, season, team
     # Select league nation if opt1 is None
     if st.session_state.opt1 is None and st.session_state.leagues =={}:
         nations = ["international"]
-        response = requests.get('https://www.fotmob.com/api/allLeagues', params=params, headers=headers)
-
-        for country in response.json().get('countries', []):
+        try:
+            response = requests.get('https://www.fotmob.com/api/allLeagues', params=params, headers=headers)
+            ext=response.json()
+        except:
+            ext=retry('https://www.fotmob.com/api/allLeagues',params)
+        for country in ext.get('countries', []):
             nations.append(country['name'])
 
         opt1 = st.selectbox("Choose league nation", nations,key="nation_selection")
