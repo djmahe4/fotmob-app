@@ -10,7 +10,7 @@ from operations import retry
 
 def handle_p9(p9):
     st.session_state.per90=p9
-    st.session_state.player_analysis=True
+    #st.session_state.player_analysis=True
 def handle_pos(pos):
     st.session_state.pos=pos
 def new_plot_funct(b,desired,name,season):
@@ -86,6 +86,16 @@ def get_season_stats_destruct():
     st.session_state.pposition=None
     st.session_state.per90=False
 def get_season_stats(name,id=1083323,season="LaLiga"):
+    if "pposition" not in st.session_state:
+        st.session_state.pposition=None
+    if "per90" not in st.session_state:
+        st.session_state.per90=False
+    if 'player_analysis' not in st.session_state:
+        st.session_state.player_analysis=False
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),on_change=handle_pos,key='pposition')
+    #st.button('position',on_click=handle_pos,args=pos)
+    p9=st.selectbox("Per90?",[True,False],on_change=handle_p9,key='per90')
+    #st.button('90',on_click=handle_p9,args=p9)
     headers = {
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
@@ -148,12 +158,6 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         b=ext['firstSeasonStats']['statsSection']['items']
     #print(b)
     #st.write(b)
-    if "pposition" not in st.session_state:
-        st.session_state.pposition=None
-    if "per90" not in st.session_state:
-        st.session_state.per90=False
-    if 'player_analysis' not in st.session_state:
-        st.session_state.player_analysis=False
     desired = {
         "Goalkeeper": [
             "Saves",
@@ -248,12 +252,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),on_change=handle_pos)
-    #st.button('position',on_click=handle_pos,args=pos)
-    p9=st.selectbox("Per90?",[True,False],on_change=handle_p9)
-    #st.button('90',on_click=handle_p9,args=p9)
-    if st.session_state.player_analysis:
-        new_plot_funct(b,desired,name,season)
+    #if st.session_state.player_analysis:
+    new_plot_funct(b,desired,name,season)
 def season_comparison_destruct():
     st.session_state.atype1 = None
     st.session_state.atype2 = None
