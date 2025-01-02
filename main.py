@@ -109,6 +109,6 @@ if st.session_state.toa and st.session_state.switch==False:
         get_player_stats(a, records,st)
         plotting(records,st)
     elif st.session_state.toa == "future prediction":
-        match_predict(st.session_state.mmid)
+        match_predict(st.session_state.mmid,st)
     elif st.session_state.toa == "numerology":
         numerology(st.session_state.mmid, st)
