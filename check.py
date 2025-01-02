@@ -251,8 +251,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     else:
         b=ext['firstSeasonStats']['statsSection']['items']
   
-    #if st.session_state.player_analysis:
-    new_plot_funct(b,desired,name,season)
+    if st.session_state.pposition:
+        new_plot_funct(b,desired,name,season)
 def season_comparison_destruct():
     st.session_state.atype1 = None
     st.session_state.atype2 = None
