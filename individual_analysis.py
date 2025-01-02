@@ -3,6 +3,100 @@ import requests,json
 from check import get_season_stats,season_comparison,get_season_stats_destruct,season_comparison_destruct
 from operations import retry
 
+desired = {
+        "Goalkeeper": [
+            "Saves",
+            "Save percentage",
+            "Goals conceded"
+            "Goals prevented",
+            "Clean sheets",
+            "High claim",
+            "Pass accuracy",
+            "Long ball accuracy"
+        ],
+        "Centre-Back": [
+            "Tackles won",
+            "Duels won",
+            "Aerial duels won",
+            "Interceptions",
+            "Blocked",
+            "Recoveries",
+            'Dribbled past',
+            "Successful passes",
+            "Pass accuracy",
+            "Accurate long balls",
+            "Touches"
+        ],
+        "Full-Back/Wing-Back": [
+            "xA",
+            "Duels won",
+            "Interceptions",
+            "Blocked",
+            "Recoveries",
+            "Successful dribbles",
+            "Successful passes",
+            "Pass accuracy",
+            "Accurate long balls",
+            "Touches",
+            "Successful crosses",
+            "Cross accuracy"
+        ],
+        "Defensive Midfielder": [
+            "Assists",
+            "Interceptions",
+            "Successful passes",
+            "Pass accuracy",
+            "Tackles won",
+            "Duels won",
+            "Accurate long balls",
+            "Touches",
+            "Dispossessed",
+            "Tackles won",
+            "Interceptions",
+            "Recoveries",
+            'Dribbled past'
+        ],
+        "Central Midfielder": [
+            "Assists",
+            "xA",
+            "Successful passes",
+            "Pass accuracy",
+            "Accurate long balls",
+            "Chances created",
+            "Successful dribbles",
+            "Touches",
+            "Dispossessed",
+            "Tackles won",
+            "Interceptions",
+            "Recoveries",
+            "Possession won final 3rd"
+        ],
+        "Wide Midfielder/Winger": [
+            "Goals",
+            "xG",
+            "Shots",
+            "Shots on target",
+            "Assists",
+            "xA",
+            "Successful dribbles",
+            "Touches in opposition box",
+            "Successful crosses",
+            "Cross accuracy",
+            "Interceptions"
+        ],
+        "Forward/Striker": [
+            "Goals",
+            "xG",
+            "Shots",
+            "Shots on target",
+            "Assists",
+            "xA",
+            "Successful dribbles",
+            "Touches in opposition box",
+            "Duels won",
+            "Recoveries"
+        ]
+    }
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
 def psearch(name):
     headers = {
@@ -235,6 +329,7 @@ def get_data(type): # player, season, team
                 return st.session_state.returned
             #st.session_state.players=squad_extract(st.session_state.teams[st.session_state.opt3])
 def main():
+    global desired
     choice2=st.selectbox("Choose:",["Individual Season Stats","Season Stats Comparison","Player v Player comparison"])
     if st.button("Continue"):
         st.session_state.choice2=choice2
