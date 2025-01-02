@@ -9,17 +9,6 @@ import time
 from operations import retry
 
 def new_plot_funct(b,desired,name,season):
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
-    #st.session_state.pposition=pos
-    p9=st.selectbox("Per90?",[True,False])
-    #st.session_state.per90=p9
-    #st.button("Selected..",on_click=new_plot_funct(b,desired,name,season))
-    if pos != st.session_state.pposition or p9 != st.session_state.per90:
-        st.session_state.pposition = pos
-        st.session_state.per90 = p9
-        #st.session_state.choice2 = pos
-        #st.experimental_rerun()
-        new_plot_funct(b,desired,name,season)
     present=[]
     necessary=[]
     for i in b[:-1]:
@@ -252,11 +241,21 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
-    
-    #if st.button("Position selected"):
-        #st.session_state.pposition = pos
-        #st.session_state.per90 = p9
-    new_plot_funct(b,desired,name,season)
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    #st.session_state.pposition=pos
+    p9=st.selectbox("Per90?",[True,False])
+    #st.session_state.per90=p9
+    #st.button("Selected..",on_click=new_plot_funct(b,desired,name,season))
+    if pos != st.session_state.pposition or p9 != st.session_state.per90:
+        st.session_state.pposition = pos
+        st.session_state.per90 = p9
+        #st.session_state.choice2 = pos
+        #st.experimental_rerun()
+        new_plot_funct(b,desired,name,season)
+    if st.button("Position selected"):
+        st.session_state.pposition = pos
+        st.session_state.per90 = p9
+        new_plot_funct(b,desired,name,season)
         #st.experimental_rerun()
         #new_plot_funct(b)
         #st.session_state.pposition=pos
