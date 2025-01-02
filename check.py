@@ -242,7 +242,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         ]
     }
     # Match Selection Section (Now with reset logic)
-    if st.session_state.ppostition:
+    if st.session_state.pposition:
         if st.session_state.per90: # Only display this if a match has been selected
             st.write(f"Per90: {st.session_state.per90}")
         else:
