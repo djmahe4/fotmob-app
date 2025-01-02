@@ -173,11 +173,12 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         ]
     }
     pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    st.session_state.pposition=pos
     #p9=st.selectbox("Per90?",[True,False])
     if st.button("Selected.."):
         st.session_state.pposition=pos
-    else:
-        st.session_state.pposition=pos
+    #else:
+        #st.session_state.pposition=pos
         #st.session_state.per90=p9
     present=[]
     necessary = []
@@ -198,10 +199,11 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         #st.session_state.per90=p9
     #p9 = input("Per 90 stats (y/n):")
     p9=st.selectbox("Per90?",[True,False])
+    st.session_state.per90=p9
     if st.button("Done.."):
         st.session_state.per90=p9
-    else:
-        st.session_state.per90=p9
+    #else:
+        #st.session_state.per90=p9
     # Convert the data into a pandas DataFrame
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
