@@ -90,7 +90,10 @@ def match_predict(match_id,st):
     }
     
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
-    gem = response.json()
+    try:
+        gem = response.json()
+    except:
+        gem=retry('https://www.fotmob.com/api/matchDetails',params)
     # print(gem.keys())
     home = gem['general']['homeTeam']['name']
     away = gem['general']['awayTeam']['name']
