@@ -59,8 +59,12 @@ def performance(id,vs):
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
     }
-    response=requests.get(f"https://www.fotmob.com/api/playerData?id={id}",headers=headers)
-    recent=json.loads(response.text)['recentMatches']
+    params={'id':id}
+    response=requests.get(f"https://www.fotmob.com/api/playerData",headers=headers)
+    try:
+        recent=json.loads(response.text)['recentMatches']
+    except:
+        recent=retry(f"https://www.fotmob.com/api/playerData",params)['recentMatches']
     #recent=response.json()['recentMatches']
     total=0
     matches=0
