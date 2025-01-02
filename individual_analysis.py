@@ -345,13 +345,21 @@ def main():
         #st.write(st.session_state)
         if st.session_state.returned:
             pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
-            if pos!=st.session_state.pposition:
+            if st.button("Position"):
+                if pos!=st.session_state.pposition:
+                        st.session_state.pposition=pos
+            else:
                 st.session_state.pposition=pos
+            st.write(f"Selected position:{st.session_state.pposition}")
     #st.button('position',on_click=handle_pos,args=[pos])
     #with col2:
             p9=st.selectbox("Per90?",[True,False])
-            if p9 != st.session_state.per90:
+            if st.button("p90"):
+                    if p9 != st.session_state.per90:
+                        st.session_state.per90=p9
+            else:
                 st.session_state.per90=p9
+            st.write(f"Per90:{st.session_state.per90}"
             st.warning("please click 'Finished1' if u want to change options")
             get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
