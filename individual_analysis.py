@@ -362,7 +362,7 @@ def main():
                                 st.session_state.per90=p9
                         st.write(f"Per90:{st.session_state.per90}")
                         st.session_state.indiv=True
-                        st.warning("please click 'Finished1' if u want to change options")
+           st.warning("please click 'Finished1' if u want to change options")
            if st.session_state.indiv:
                 get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
