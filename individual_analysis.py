@@ -342,12 +342,10 @@ def main():
             st.session_state.indivs=False
         #st.write(st.session_state)
         #get_data_destruct()
-        if st.button("Finished1"):
-            season_comparison_destruct()
-            get_season_stats_destruct()
-            get_data_destruct()
-        a=get_data("player")
-        st.write(a)
+      
+        if not st.session_state.returned:
+            a=get_data("player")
+            st.write(a)
         #st.write(st.session_state)
         if st.session_state.returned:
             pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
@@ -364,6 +362,10 @@ def main():
             if st.session_state.indivs:
                 get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
+            if st.button("Finished1"):
+                season_comparison_destruct()
+                get_season_stats_destruct()
+                get_data_destruct()
         st.write(st.session_state)
     elif st.session_state.choice2=="Season Stats Comparison":
         if st.session_state.opt4:
