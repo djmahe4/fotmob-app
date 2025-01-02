@@ -41,6 +41,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             print(i["entryId"])
             eid=i["entryId"]
     #eid="0-1"
+    st.write(eid)
     if eid!="0-0":
         headers = {
             'accept': '*/*',
