@@ -177,79 +177,81 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     #p9=st.selectbox("Per90?",[True,False])
     if st.button("Selected.."):
         st.session_state.pposition=pos
+    if st.session_state.pposition:
     #else:
         #st.session_state.pposition=pos
         #st.session_state.per90=p9
-    present=[]
-    necessary = []
-    #if pos!=st.session_state.pposition:
-        #st.session_state.pposition=pos
-    #st.write(b)
-    for i in b[:-1]:
-        print(i['title'])
-        for items in i["items"]:
-            present.append(items["title"])
-            st.write(items['title'],st.session_state.pposition)
-            if items["title"] in desired[st.session_state.pposition]:
-                necessary.append(items)
-                print(items["title"])
-    print(necessary)
-    print(present)
-    #if p9!=st.session_state.per90:
-        #st.session_state.per90=p9
-    #p9 = input("Per 90 stats (y/n):")
-    p9=st.selectbox("Per90?",[True,False])
-    st.session_state.per90=p9
-    if st.button("Done.."):
+        present=[]
+        necessary = []
+        #if pos!=st.session_state.pposition:
+            #st.session_state.pposition=pos
+        #st.write(b)
+        for i in b[:-1]:
+            print(i['title'])
+            for items in i["items"]:
+                present.append(items["title"])
+                st.write(items['title'],st.session_state.pposition)
+                if items["title"] in desired[st.session_state.pposition]:
+                    necessary.append(items)
+                    print(items["title"])
+        print(necessary)
+        print(present)
+        #if p9!=st.session_state.per90:
+            #st.session_state.per90=p9
+        #p9 = input("Per 90 stats (y/n):")
+        p9=st.selectbox("Per90?",[True,False])
         st.session_state.per90=p9
-    #else:
-        #st.session_state.per90=p9
-    # Convert the data into a pandas DataFrame
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.max_columns', None)
-    df = pd.DataFrame(necessary)
-    # Convert 'statValue' to numeric
-    df['statValue'] = pd.to_numeric(df['statValue'])
-    df['per90'] = pd.to_numeric(df['per90'])
-    df['percentileRankPer90'] = pd.to_numeric(df['percentileRankPer90'])
-    df['percentileRank'] = pd.to_numeric(df['percentileRank'])
-    # Assuming 'df' is your DataFrame
-    df.drop(columns=['localizedTitleId', 'statFormat'], inplace=True)
-    rdf = df
-    print(rdf)
-    st.dataframe(rdf)
-    # Create a color palette
-    palette = sns.color_palette("bright", len(df))
-    # Create the bar plot
-    plt.figure(figsize=(20, 10))
-    if st.session_state.per90:
-        bar_plot = sns.barplot(x='title', y='percentileRankPer90', data=df, palette=palette)
-        # Display the 'per90' above the bars
-        for i, row in df.iterrows():
-            bar_plot.text(i, row.percentileRankPer90 + 0.5, round(row.per90, 2), color='black', ha="center")
-    else:
-        bar_plot = sns.barplot(x='title', y='percentileRank', data=df, palette=palette)
-        # Display the 'statValue' above the bars
-        for i, row in df.iterrows():
-            bar_plot.text(i, row.percentileRank + 0.5, round(row.statValue, 2), color='black', ha="center")
-
-    plt.axhline(50, color='red', linestyle='dashed')
-
-    # Rotate x-axis labels for better visibility
-    # plt.xticks(rotation=90, fontsize=10)
-
-    # Set plot title and labels
-    #name = input("Enter player name:")
-    # tname=input("Enter season:")
-    plt.title(f'Season Stats of {name.title()} in {season}', fontsize=20, color=random.choice(palette))
-    plt.xlabel('Stats', fontsize=15, color='green')
-    plt.ylabel('Percentile ranking', fontsize=15, color='red')
-    # Add an annotation
-    plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
-            fontsize=12, ha='left', va='bottom', alpha=0.4)
-    # Adjust the subplot parameters to give the x-axis labels more space
-    plt.subplots_adjust(bottom=0.4)
-    st.pyplot(plt)
+        if st.button("Done.."):
+            st.session_state.per90=p9
+        #else:
+            #st.session_state.per90=p9
+        if st.session_state.per90:
+            # Convert the data into a pandas DataFrame
+            pd.set_option('display.max_rows', None)
+            pd.set_option('display.max_columns', None)
+            df = pd.DataFrame(necessary)
+            # Convert 'statValue' to numeric
+            df['statValue'] = pd.to_numeric(df['statValue'])
+            df['per90'] = pd.to_numeric(df['per90'])
+            df['percentileRankPer90'] = pd.to_numeric(df['percentileRankPer90'])
+            df['percentileRank'] = pd.to_numeric(df['percentileRank'])
+            # Assuming 'df' is your DataFrame
+            df.drop(columns=['localizedTitleId', 'statFormat'], inplace=True)
+            rdf = df
+            print(rdf)
+            st.dataframe(rdf)
+            # Create a color palette
+            palette = sns.color_palette("bright", len(df))
+            # Create the bar plot
+            plt.figure(figsize=(20, 10))
+            if st.session_state.per90:
+                bar_plot = sns.barplot(x='title', y='percentileRankPer90', data=df, palette=palette)
+                # Display the 'per90' above the bars
+                for i, row in df.iterrows():
+                    bar_plot.text(i, row.percentileRankPer90 + 0.5, round(row.per90, 2), color='black', ha="center")
+            else:
+                bar_plot = sns.barplot(x='title', y='percentileRank', data=df, palette=palette)
+                # Display the 'statValue' above the bars
+                for i, row in df.iterrows():
+                    bar_plot.text(i, row.percentileRank + 0.5, round(row.statValue, 2), color='black', ha="center")
+        
+            plt.axhline(50, color='red', linestyle='dashed')
+        
+            # Rotate x-axis labels for better visibility
+            # plt.xticks(rotation=90, fontsize=10)
+        
+            # Set plot title and labels
+            #name = input("Enter player name:")
+            # tname=input("Enter season:")
+            plt.title(f'Season Stats of {name.title()} in {season}', fontsize=20, color=random.choice(palette))
+            plt.xlabel('Stats', fontsize=15, color='green')
+            plt.ylabel('Percentile ranking', fontsize=15, color='red')
+            # Add an annotation
+            plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
+                    fontsize=12, ha='left', va='bottom', alpha=0.4)
+            # Adjust the subplot parameters to give the x-axis labels more space
+            plt.subplots_adjust(bottom=0.4)
+            st.pyplot(plt)
     #return
 def season_comparison_destruct():
     st.session_state.atype1 = None
