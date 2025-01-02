@@ -179,8 +179,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         st.session_state.per90=p9
     present=[]
     necessary = []
-    if pos!=st.session_state.pposition:
-        st.session_state.pposition=pos
+    #if pos!=st.session_state.pposition:
+        #st.session_state.pposition=pos
     #st.write(b)
     for i in b[:-1]:
         print(i['title'])
@@ -191,8 +191,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
                 print(items["title"])
     print(necessary)
     print(present)
-    if p9!=st.session_state.per90:
-        st.session_state.per90=p9
+    #if p9!=st.session_state.per90:
+        #st.session_state.per90=p9
     #p9 = input("Per 90 stats (y/n):")
     #p9=st.selectbox("Per90?",[True,False])
     #if st.button("Done.."):
