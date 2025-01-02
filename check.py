@@ -186,9 +186,9 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),on_change=handle_pos,key='pposition')
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),on_change=handle_pos(pos),key='pposition')
     #st.button('position',on_click=handle_pos,args=pos)
-    p9=st.selectbox("Per90?",[True,False],on_change=handle_p9,key='per90')
+    p9=st.selectbox("Per90?",[True,False],on_change=handle_p9(p9),key='per90')
     #st.button('90',on_click=handle_p9,args=p9)
     headers = {
         'accept': '*/*',
