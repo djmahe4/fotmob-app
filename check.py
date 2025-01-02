@@ -9,6 +9,7 @@ import time
 from operations import retry
 
 def new_plot_funct(b,desired):
+    st.write(desired)
     present=[]
     necessary=[]
     for i in b[:-1]:
@@ -110,7 +111,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             print(i["entryId"])
             eid=i["entryId"]
     #eid="0-1"
-    st.write(eid)
+    #st.write(eid)
     if eid!="0-0":
         headers = {
             'accept': '*/*',
@@ -142,7 +143,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     else:
         b=ext['firstSeasonStats']['statsSection']['items']
     #print(b)
-    st.write(b)
+    #st.write(b)
     if "pposition" not in st.session_state:
         st.session_state.pposition=None
     if "per90" not in st.session_state:
