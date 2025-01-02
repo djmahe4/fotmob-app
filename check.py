@@ -10,6 +10,7 @@ from operations import retry
 
 def handle_p9(p9):
     st.session_state.per90=p9
+    st.session_state.player_analysis=True
 def handle_pos(pos):
     st.session_state.pos=pos
 def new_plot_funct(b,desired,name,season):
@@ -151,6 +152,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         st.session_state.pposition=None
     if "per90" not in st.session_state:
         st.session_state.per90=False
+    if 'player_analysis' not in st.session_state:
+        st.session_state.player_analysis=False
     desired = {
         "Goalkeeper": [
             "Saves",
@@ -249,7 +252,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     st.button('position',on_click=handle_pos,args=pos)
     p9=st.selectbox("Per90?",[True,False])
     st.button('90',on_click=handle_p9,args=p9)
-    new_plot_funct(b,desired,name,season)
+    if st.session_state.player_analysis:
+        new_plot_funct(b,desired,name,season)
 def season_comparison_destruct():
     st.session_state.atype1 = None
     st.session_state.atype2 = None
