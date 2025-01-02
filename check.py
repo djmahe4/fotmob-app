@@ -183,14 +183,14 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     }
     #col1,col2=st.coloumns(2)
     #with col1:
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
-    if pos!=st.session_state.pposition:
-        st.session_state.pposition=pos
+    #pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    #if pos!=st.session_state.pposition:
+        #st.session_state.pposition=pos
     #st.button('position',on_click=handle_pos,args=[pos])
     #with col2:
-    p9=st.selectbox("Per90?",[True,False])
-    if p9 != st.session_state.per90:
-        st.session_state.per90=p9
+    #p9=st.selectbox("Per90?",[True,False])
+    #if p9 != st.session_state.per90:
+        #st.session_state.per90=p9
     headers = {
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
