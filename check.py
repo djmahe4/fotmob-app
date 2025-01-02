@@ -241,36 +241,42 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
-    #st.session_state.pposition=pos
-    p9=st.selectbox("Per90?",[True,False])
-    #st.session_state.per90=p9
-    #st.button("Selected..",on_click=new_plot_funct(b,desired,name,season))
-    if st.button("Position selected"):
-        st.session_state.pposition = pos
-        st.session_state.per90 = p9
+    # Match Selection Section (Now with reset logic)
+    if st.session_state.ppostition:
+        if st.session_state.per90: # Only display this if a match has been selected
+            st.write(f"Per90: {st.session_state.per90}")
+        else:
+            p9=st.selectbox("Per90?",[True,False])
+            if p9 != st.session_state.per90:#check if the choice has changed
+                st.session_state.per90=p9
+            #st.experimental_rerun() #force rerun so the selectbox updates correctly
+                #st.rerun()
+            if st.button("p90 selected"):
+                st.st.session_state.per90=p9
+                #st.session_state.mmid = st.session_state.choices[choice]
+                #st.session_state.selected_match_display = choice
+    else:
+        pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+        if pos != st.session_state.pposition:#check if the choice has changed
+            st.session_state.pposition=pos
+            #st.experimental_rerun() #force rerun so the selectbox updates correctly
+            #st.rerun()
+        if st.button("Position selected"):
+            st.session_state.pposition=pos
+        if st.session_state.per90: # Only display this if a match has been selected
+            st.write(f"Per90: {st.session_state.per90}")
+        else:
+            p9=st.selectbox("Per90?",[True,False])
+            if p9 != st.session_state.per90:#check if the choice has changed
+                st.session_state.per90=p9
+            #st.experimental_rerun() #force rerun so the selectbox updates correctly
+                #st.rerun()
+            if st.button("p90 selected"):
+                st.st.session_state.per90=p9
+                #st.session_state.mmid = st.session_state.choices[choice]
+                #st.session_state.selected_match_display = choice
+    if st.session_state.per90 !=None and st.session_state.pposition:
         new_plot_funct(b,desired,name,season)
-    if pos != st.session_state.pposition or p9 != st.session_state.per90:
-        st.session_state.pposition = pos
-        st.session_state.per90 = p9
-        #st.session_state.choice2 = pos
-        #st.experimental_rerun()
-        new_plot_funct(b,desired,name,season)
-        #st.experimental_rerun()
-        #new_plot_funct(b)
-        #st.session_state.pposition=pos
-        #st.session_state.per90=p9
-    #if st.session_state.pposition and not st.session_state.per90:
-    #else:
-        #st.session_state.pposition=pos
-        #st.session_state.per90=p9
-        #present=[]
-        #necessary = []
-        #if pos!=st.session_state.pposition:
-            #st.session_state.pposition=pos
-        #st.write(b)
-        
-    #return
 def season_comparison_destruct():
     st.session_state.atype1 = None
     st.session_state.atype2 = None
