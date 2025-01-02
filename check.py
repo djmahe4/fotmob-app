@@ -287,7 +287,10 @@ def season_comparison(id):
 
     response = requests.get('https://www.fotmob.com/api/leagues', params=params, headers=headers)
     #print(response)
-    a = response.json()
+    try:
+        a = response.json()
+    except:
+        a=retry('https://www.fotmob.com/api/leagues',params)
     #print(a)
     stats = a["stats"]["players"]
     di = {}
