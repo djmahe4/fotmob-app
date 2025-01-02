@@ -72,7 +72,10 @@ def season_team_extract(id):
     }
 
     response = requests.get('https://www.fotmob.com/api/leagues', params=params, headers=headers)
-    det=response.json()
+    try:
+        det=response.json()
+    except:
+        det=retry('https://www.fotmob.com/api/leagues',params)
     teams={}
     for i in det['table'][0]['data']['table']['all']:
         print(i['name'], i['id'])
