@@ -355,11 +355,12 @@ def main():
             if st.button("p90"):
                 if p9 != st.session_state.per90:
                         st.session_state.per90=p9
-            else:
-                st.session_state.per90=p9
+                else:
+                        st.session_state.per90=p9
             st.write(f"Per90:{st.session_state.per90}")
             st.warning("please click 'Finished1' if u want to change options")
-            get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
+            if st.session_state.pposition:
+                    get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
         if st.button("Finished1"):
             season_comparison_destruct()
