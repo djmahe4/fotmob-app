@@ -16,7 +16,11 @@ if on:
     st.session_state.switch = True
     det = requests.get("https://www.fotmob.com/api/mylocation").json()
     st.write(det)
-    st.session_state.ccode3 = det["ccode3"]
+    ra=det.get("regionId","")
+    if ra!="":
+        st.session_state.ccode3 = det["ccode3"]+"_"+ra
+    else:
+         st.session_state.ccode3 = det["ccode3"]
     st.session_state.country=det["countryCode"]
     st.session_state.returned = {}
     #st.session_state.returned2 = {}
@@ -44,7 +48,11 @@ if 'initialized' not in st.session_state:
 if st.button("Start") and not st.session_state.switch:
     det = requests.get("https://www.fotmob.com/api/mylocation").json()
     st.session_state.timezone = det['timezone']
-    st.session_state.ccode3 = det['ccode3']
+    ra=det.get("regionId","")
+    if ra!="":
+        st.session_state.ccode3 = det["ccode3"]+"_"+ra
+    else:
+         st.session_state.ccode3 = det["ccode3"]
 
     contents = match_id_init(st)
     choices = {}
