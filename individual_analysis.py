@@ -49,7 +49,10 @@ def squad_extract(id):
 
     response = requests.get('https://www.fotmob.com/api/teams', params=params, headers=headers)
     #print(response.json())
-    det=response.json()
+    try:
+        det=response.json()
+    except:
+        det=retry('https://www.fotmob.com/api/teams',params)
     players = {}
     for i in det['squad'][1:]:
         for j in i['members']:
