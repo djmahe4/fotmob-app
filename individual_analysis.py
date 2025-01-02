@@ -151,10 +151,10 @@ def get_data(type): # player, season, team
 
             # Populate leagues based on the selected nation
             if st.session_state.opt1 == "international":
-                for league in response.json().get(st.session_state.opt1, [{}])[0].get('leagues', []):
+                for league in ext.get(st.session_state.opt1, [{}])[0].get('leagues', []):
                     leagues[league["name"]] = league["id"]
             else:
-                for country in response.json().get('countries', []):
+                for country in ext.get('countries', []):
                     if country['name'] == st.session_state.opt1:
                         for league in country['leagues']:
                             leagues[league['name']] = league['id']
