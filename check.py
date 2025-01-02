@@ -92,72 +92,6 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         st.session_state.per90=False
     if 'player_analysis' not in st.session_state:
         st.session_state.player_analysis=False
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),on_change=handle_pos,key='pposition')
-    #st.button('position',on_click=handle_pos,args=pos)
-    p9=st.selectbox("Per90?",[True,False],on_change=handle_p9,key='per90')
-    #st.button('90',on_click=handle_p9,args=p9)
-    headers = {
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-        # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A656f%3Ae4c5%3A6e5d%3Afccd%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6IjUwZjc0ZWFhLTg2MzEtNGI5ZC1iN2FmLTI0NzE5OGVmMWQ1MCIsImMiOjE3MzUzMDQ3Nzc2MDcsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735304784:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735304784:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol8JTFw79ztvqk-5Oj_ln5gMDeR-dbmk8vkQL_pSpwrxMFGSJVIONhQ24JMi7_y3sIWohteiYErlSoBiP_SNI84QAb-CHeTUSR6HlD12jIfkx98d_AOklODngKjut0UWdUVOXycSDwNy5CFXKXpeC45VripyUw%3D%3D%22%5D%5D; cto_bundle=hI4bU19XdHpnQ0lrS0x2VUdmcU93UGZNUWdyU0tWUmVuOE9LbHRZWU1LU1ZlQkhwUWxTUmIxZE82U1VTbGdQb0Rkbk9VbUNuYTFldDhiTDZDZlJrNHVzJTJGNW1udXZYbVEyaW1PRVVsWjh2VnhjYlolMkYlMkZ0Q0hNJTJCc2JKRjlQUGE5Qkx3N0R5VnV0SUdua1B2Zmp4MXJINDVtUDVYdyUzRCUzRA; _ga_G0V1WDW9B2=GS1.1.1735304777.11.1.1735304821.0.0.0',
-        'priority': 'u=1, i',
-        'referer': f'https://www.fotmob.com/players/{id}/{"-".join(name.lower().split())}',
-        'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-        'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyRGF0YT9pZD0xMDgzMzIzIiwiY29kZSI6MTczNTMwNDgyMjcxOSwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IkM4MkQwMzAzRDc0QUEzMEQzRDQ5RjI2QzM4Q0NGMzBGIn0=',
-    }
-
-    params = {
-        'id': f'{id}',
-    }
-    try:
-        response = requests.get('https://www.fotmob.com/api/playerData', params=params, headers=headers)
-        ext=response.json()
-    except requests.JSONDecodeError:
-        ext=retry('https://www.fotmob.com/api/playerData',params)
-    for i in ext['statSeasons'][0]['tournaments']:
-        if i['name']==season:
-            print(i["entryId"])
-            eid=i["entryId"]
-    #eid="0-1"
-    #st.write(eid)
-    if eid!="0-0":
-        headers = {
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
-            # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A656f%3Ae4c5%3A6e5d%3Afccd%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6IjUwZjc0ZWFhLTg2MzEtNGI5ZC1iN2FmLTI0NzE5OGVmMWQ1MCIsImMiOjE3MzUzMDQ3Nzc2MDcsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735304784:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735304784:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol8JTFw79ztvqk-5Oj_ln5gMDeR-dbmk8vkQL_pSpwrxMFGSJVIONhQ24JMi7_y3sIWohteiYErlSoBiP_SNI84QAb-CHeTUSR6HlD12jIfkx98d_AOklODngKjut0UWdUVOXycSDwNy5CFXKXpeC45VripyUw%3D%3D%22%5D%5D; cto_bundle=hI4bU19XdHpnQ0lrS0x2VUdmcU93UGZNUWdyU0tWUmVuOE9LbHRZWU1LU1ZlQkhwUWxTUmIxZE82U1VTbGdQb0Rkbk9VbUNuYTFldDhiTDZDZlJrNHVzJTJGNW1udXZYbVEyaW1PRVVsWjh2VnhjYlolMkYlMkZ0Q0hNJTJCc2JKRjlQUGE5Qkx3N0R5VnV0SUdua1B2Zmp4MXJINDVtUDVYdyUzRCUzRA; _ga_G0V1WDW9B2=GS1.1.1735304777.11.1.1735304821.0.0.0',
-            'priority': 'u=1, i',
-            'referer': 'https://www.fotmob.com/players/1083323/pedri',
-            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-            'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyU3RhdHM/cGxheWVySWQ9MTA4MzMyMyZzZWFzb25JZD0wLTEmaXNGaXJzdFNlYXNvbj1mYWxzZSIsImNvZGUiOjE3MzUzMDU2NzYwMTcsImZvbyI6ImU5NmI2MGEyMSJ9LCJzaWduYXR1cmUiOiIxOUQ3RTFDREJGNjg4ODY3NEUwQ0JCNjQ0Q0FBQTBDOCJ9',
-        }
-
-        params = {
-            'playerId': f'{id}',
-            'seasonId': f'{eid}',
-            #'isFirstSeason': 'false',
-        }
-
-        response = requests.get('https://www.fotmob.com/api/playerStats', params=params, headers=headers)
-        try:
-            b=response.json()['statsSection']['items']
-        except:
-            b=retry('https://www.fotmob.com/api/playerStats',params)['statsSection']['items']
-    else:
-        b=ext['firstSeasonStats']['statsSection']['items']
-    #print(b)
-    #st.write(b)
     desired = {
         "Goalkeeper": [
             "Saves",
@@ -252,6 +186,71 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()),on_change=handle_pos,key='pposition')
+    #st.button('position',on_click=handle_pos,args=pos)
+    p9=st.selectbox("Per90?",[True,False],on_change=handle_p9,key='per90')
+    #st.button('90',on_click=handle_p9,args=p9)
+    headers = {
+        'accept': '*/*',
+        'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
+        # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A656f%3Ae4c5%3A6e5d%3Afccd%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6IjUwZjc0ZWFhLTg2MzEtNGI5ZC1iN2FmLTI0NzE5OGVmMWQ1MCIsImMiOjE3MzUzMDQ3Nzc2MDcsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735304784:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735304784:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol8JTFw79ztvqk-5Oj_ln5gMDeR-dbmk8vkQL_pSpwrxMFGSJVIONhQ24JMi7_y3sIWohteiYErlSoBiP_SNI84QAb-CHeTUSR6HlD12jIfkx98d_AOklODngKjut0UWdUVOXycSDwNy5CFXKXpeC45VripyUw%3D%3D%22%5D%5D; cto_bundle=hI4bU19XdHpnQ0lrS0x2VUdmcU93UGZNUWdyU0tWUmVuOE9LbHRZWU1LU1ZlQkhwUWxTUmIxZE82U1VTbGdQb0Rkbk9VbUNuYTFldDhiTDZDZlJrNHVzJTJGNW1udXZYbVEyaW1PRVVsWjh2VnhjYlolMkYlMkZ0Q0hNJTJCc2JKRjlQUGE5Qkx3N0R5VnV0SUdua1B2Zmp4MXJINDVtUDVYdyUzRCUzRA; _ga_G0V1WDW9B2=GS1.1.1735304777.11.1.1735304821.0.0.0',
+        'priority': 'u=1, i',
+        'referer': f'https://www.fotmob.com/players/{id}/{"-".join(name.lower().split())}',
+        'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+        'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyRGF0YT9pZD0xMDgzMzIzIiwiY29kZSI6MTczNTMwNDgyMjcxOSwiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IkM4MkQwMzAzRDc0QUEzMEQzRDQ5RjI2QzM4Q0NGMzBGIn0=',
+    }
+
+    params = {
+        'id': f'{id}',
+    }
+    try:
+        response = requests.get('https://www.fotmob.com/api/playerData', params=params, headers=headers)
+        ext=response.json()
+    except requests.JSONDecodeError:
+        ext=retry('https://www.fotmob.com/api/playerData',params)
+    for i in ext['statSeasons'][0]['tournaments']:
+        if i['name']==season:
+            print(i["entryId"])
+            eid=i["entryId"]
+    #eid="0-1"
+    #st.write(eid)
+    if eid!="0-0":
+        headers = {
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
+            # 'cookie': '__gpi=UID=00000de55eeafc9b:T=1712677321:RT=1712677321:S=ALNI_Mbzxe_PMDTNBzcRWRn2EjB3ptaQAA; _ga=GA1.1.2076984740.1712677318; _cc_id=7be34bda8ef5c90644fbb00c411b806b; _ga_G0V1WDW9B2=deleted; _hjSessionUser_2585474=eyJpZCI6IjIxZDk5Y2IyLWYzYWItNWU4My04MjZkLTg4ZWQzNTJiNjhiZCIsImNyZWF0ZWQiOjE3MzI0NTQ1NDEwOTgsImV4aXN0aW5nIjp0cnVlfQ==; panoramaId_expiry=1735383329968; panoramaId=804c193543df94bdaf3775cce9894945a702c8a27ba6aba96dc7c0055b26d49c; panoramaIdType=panoIndiv; g_state={"i_p":1737618382846,"i_l":4}; u:location=%7B%22countryCode%22%3A%22IN%22%2C%22ccode3%22%3A%22IND%22%2C%22timezone%22%3A%22Asia%2FCalcutta%22%2C%22ip%22%3A%222406%3A8800%3A9015%3Ac550%3A656f%3Ae4c5%3A6e5d%3Afccd%22%2C%22regionId%22%3A%22KL%22%2C%22regionName%22%3A%22Kerala%22%7D; _hjSession_2585474=eyJpZCI6IjUwZjc0ZWFhLTg2MzEtNGI5ZC1iN2FmLTI0NzE5OGVmMWQ1MCIsImMiOjE3MzUzMDQ3Nzc2MDcsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; __gads=ID=faa1e9087fd1c078:T=1712677321:RT=1735304784:S=ALNI_Ma6L5CmpnceQeaPqEFWmPNRuYfEgA; __eoi=ID=66fbdc7ff144ff21:T=1729334344:RT=1735304784:S=AA-Afjb4iGP-5-EUcCydc8gEb6xn; FCNEC=%5B%5B%22AKsRol8JTFw79ztvqk-5Oj_ln5gMDeR-dbmk8vkQL_pSpwrxMFGSJVIONhQ24JMi7_y3sIWohteiYErlSoBiP_SNI84QAb-CHeTUSR6HlD12jIfkx98d_AOklODngKjut0UWdUVOXycSDwNy5CFXKXpeC45VripyUw%3D%3D%22%5D%5D; cto_bundle=hI4bU19XdHpnQ0lrS0x2VUdmcU93UGZNUWdyU0tWUmVuOE9LbHRZWU1LU1ZlQkhwUWxTUmIxZE82U1VTbGdQb0Rkbk9VbUNuYTFldDhiTDZDZlJrNHVzJTJGNW1udXZYbVEyaW1PRVVsWjh2VnhjYlolMkYlMkZ0Q0hNJTJCc2JKRjlQUGE5Qkx3N0R5VnV0SUdua1B2Zmp4MXJINDVtUDVYdyUzRCUzRA; _ga_G0V1WDW9B2=GS1.1.1735304777.11.1.1735304821.0.0.0',
+            'priority': 'u=1, i',
+            'referer': 'https://www.fotmob.com/players/1083323/pedri',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvcGxheWVyU3RhdHM/cGxheWVySWQ9MTA4MzMyMyZzZWFzb25JZD0wLTEmaXNGaXJzdFNlYXNvbj1mYWxzZSIsImNvZGUiOjE3MzUzMDU2NzYwMTcsImZvbyI6ImU5NmI2MGEyMSJ9LCJzaWduYXR1cmUiOiIxOUQ3RTFDREJGNjg4ODY3NEUwQ0JCNjQ0Q0FBQTBDOCJ9',
+        }
+
+        params = {
+            'playerId': f'{id}',
+            'seasonId': f'{eid}',
+            #'isFirstSeason': 'false',
+        }
+
+        response = requests.get('https://www.fotmob.com/api/playerStats', params=params, headers=headers)
+        try:
+            b=response.json()['statsSection']['items']
+        except:
+            b=retry('https://www.fotmob.com/api/playerStats',params)['statsSection']['items']
+    else:
+        b=ext['firstSeasonStats']['statsSection']['items']
+  
     #if st.session_state.player_analysis:
     new_plot_funct(b,desired,name,season)
 def season_comparison_destruct():
