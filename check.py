@@ -73,6 +73,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     else:
         b=ext['firstSeasonStats']['statsSection']['items']
     #print(b)
+    st.write(b)
     if "pposition" not in st.session_state:
         st.session_state.pposition=None
     if "per90" not in st.session_state:
@@ -180,6 +181,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     necessary = []
     if pos!=st.session_state.pposition:
         st.session_state.pposition=pos
+    #st.write(b)
     for i in b[:-1]:
         print(i['title'])
         for items in i["items"]:
