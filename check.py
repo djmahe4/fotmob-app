@@ -87,13 +87,6 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         st.session_state.per90=False
     #if 'player_analysis' not in st.session_state:
         #st.session_state.player_analysis=False
-    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
-    if pos!=st.session_state.pposition:
-        st.session_state.pposition=pos
-    #st.button('position',on_click=handle_pos,args=[pos])
-    p9=st.selectbox("Per90?",[True,False])
-    if p9 != st.session_state.per90:
-        st.session_state.per90=p9
     desired = {
         "Goalkeeper": [
             "Saves",
@@ -188,6 +181,13 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             "Recoveries"
         ]
     }
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    if pos!=st.session_state.pposition:
+        st.session_state.pposition=pos
+    #st.button('position',on_click=handle_pos,args=[pos])
+    p9=st.selectbox("Per90?",[True,False])
+    if p9 != st.session_state.per90:
+        st.session_state.per90=p9
     headers = {
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
