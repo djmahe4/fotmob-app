@@ -187,9 +187,9 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         ]
     }
     pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
-    st.button('position',on_click=handle_pos,args=pos)
+    st.button('position',on_click=handle_pos,args=[pos])
     p9=st.selectbox("Per90?",[True,False])
-    st.button('90',on_click=handle_p9,args=p9)
+    st.button('90',on_click=handle_p9,args=[p9])
     headers = {
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
