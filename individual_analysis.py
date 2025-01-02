@@ -371,8 +371,9 @@ def main():
         if st.session_state.opt4:
             get_data_destruct()
         #get_season_stats_destruct()
-        b=get_data("league")
-        st.write(b)
+        if not st.session_state.returned:
+            b=get_data("league")
+            st.write(b)
         st.write(st.session_state)
         #st.write(st.session_state)
         if st.session_state.returned:
