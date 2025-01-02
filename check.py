@@ -253,10 +253,10 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         #st.session_state.choice2 = pos
         #st.experimental_rerun()
         new_plot_funct(b,desired,name,season)
-    if st.button("Position selected"):
-        st.session_state.pposition = pos
-        st.session_state.per90 = p9
-        new_plot_funct(b,desired,name,season)
+    #if st.button("Position selected"):
+        #st.session_state.pposition = pos
+        #st.session_state.per90 = p9
+    new_plot_funct(b,desired,name,season)
         #st.experimental_rerun()
         #new_plot_funct(b)
         #st.session_state.pposition=pos
