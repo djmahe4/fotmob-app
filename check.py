@@ -66,7 +66,10 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         }
 
         response = requests.get('https://www.fotmob.com/api/playerStats', params=params, headers=headers)
-        b=response.json()['statsSection']['items']
+        try:
+            b=response.json()['statsSection']['items']
+        except:
+            b=retry('https://www.fotmob.com/api/playerStats',params)['statsSection']['items']
     else:
         b=ext['firstSeasonStats']['statsSection']['items']
     #print(b)
