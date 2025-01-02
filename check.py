@@ -243,7 +243,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
     st.session_state.pposition=pos
     p9=st.selectbox("Per90?",[True,False])
     st.session_state.per90=p9
-    st.button("Selected..",on_click=new_plot_function(b))
+    st.button("Selected..",on_click=new_plot_funct(b))
         #st.session_state.pposition=pos
         #st.session_state.per90=p9
     #if st.session_state.pposition and not st.session_state.per90:
