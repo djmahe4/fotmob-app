@@ -253,6 +253,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
                 #st.rerun()
             if st.button("p90 selected"):
                 st.st.session_state.per90=p9
+                new_plot_funct(b,desired,name,season)
                 #st.session_state.mmid = st.session_state.choices[choice]
                 #st.session_state.selected_match_display = choice
     else:
@@ -273,9 +274,10 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
                 #st.rerun()
             if st.button("p90 selected"):
                 st.st.session_state.per90=p9
+                new_plot_funct(b,desired,name,season)
                 #st.session_state.mmid = st.session_state.choices[choice]
                 #st.session_state.selected_match_display = choice
-    if st.session_state.per90 !=None and st.session_state.pposition:
+    #if st.session_state.per90 !=None and st.session_state.pposition:
         new_plot_funct(b,desired,name,season)
 def season_comparison_destruct():
     st.session_state.atype1 = None
