@@ -9,6 +9,8 @@ import time
 from operations import retry
 
 def new_plot_funct(b):
+    present=[]
+    necessary=[]
     for i in b[:-1]:
         print(i['title'])
         for items in i["items"]:
