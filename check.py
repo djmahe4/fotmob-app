@@ -186,6 +186,7 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         print(i['title'])
         for items in i["items"]:
             present.append(items["title"])
+            st.write(items['title'],st.session_state.pposition)
             if items["title"] in desired[st.session_state.pposition]:
                 necessary.append(items)
                 print(items["title"])
