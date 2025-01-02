@@ -338,8 +338,8 @@ def main():
             st.session_state.pposition=None
         if "per90" not in st.session_state:
             st.session_state.per90=False
-        if "indiv" not in st.session_state:
-            st.session_state.indiv=False
+        if "indivs" not in st.session_state:
+            st.session_state.indivs=False
         #st.write(st.session_state)
         #get_data_destruct()
         a=get_data("player")
@@ -361,9 +361,9 @@ def main():
                         else:
                                 st.session_state.per90=p9
                         st.write(f"Per90:{st.session_state.per90}")
-                        st.session_state.indiv=True
+                        st.session_state.indivs=True
            st.warning("please click 'Finished1' if u want to change options")
-           if st.session_state.indiv:
+           if st.session_state.indivs:
                 get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
         if st.button("Finished1"):
