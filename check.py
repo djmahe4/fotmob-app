@@ -85,8 +85,15 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
         st.session_state.pposition=None
     if "per90" not in st.session_state:
         st.session_state.per90=False
-    if 'player_analysis' not in st.session_state:
-        st.session_state.player_analysis=False
+    #if 'player_analysis' not in st.session_state:
+        #st.session_state.player_analysis=False
+    pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+    if pos!=st.session_state.pposition:
+        st.session_state.pposition=pos
+    #st.button('position',on_click=handle_pos,args=[pos])
+    p9=st.selectbox("Per90?",[True,False])
+    if p9 != st.session_state.per90:
+        st.session_state.per90=p9
     desired = {
         "Goalkeeper": [
             "Saves",
@@ -241,10 +248,6 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
             b=retry('https://www.fotmob.com/api/playerStats',params)['statsSection']['items']
     else:
         b=ext['firstSeasonStats']['statsSection']['items']
-    st.session_state.pposition=st.selectbox("Choose position to analyse:",list(desired.keys()))
-    #st.button('position',on_click=handle_pos,args=[pos])
-    st.session_state.per90=st.selectbox("Per90?",[True,False])
-    
     new_plot_funct(b,desired,name,season)
 def season_comparison_destruct():
     st.session_state.atype1 = None
