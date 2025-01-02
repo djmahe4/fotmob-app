@@ -47,6 +47,7 @@ if 'initialized' not in st.session_state:
 # Button to start the analysis (only if individual stats toggle is off)
 if st.button("Start") and not st.session_state.switch:
     det = requests.get("https://www.fotmob.com/api/mylocation").json()
+    st.write(det)
     st.session_state.timezone = det['timezone']
     ra=det.get("regionId","")
     if ra!="":
