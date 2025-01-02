@@ -15,6 +15,8 @@ from num_fotmob import extraction
 #import streamlit as st
 
 positions={2:"Midfielder",3:"Forward",1:"Defender",0:"Goalkeeper"}
+def retry(url,headers,params):
+    return requests.get(url,params=params,headers=headers).json()
 def url_extract(params="",uri="",headers=""):
     # Create a cookie jar to store cookies 
     #cookie_jar = http.cookiejar.CookieJar() # Define the opener to handle cookies 
@@ -174,7 +176,10 @@ def match_id_init(st):
         #jdata = json.loads(data.decode("utf-8"))
     except Exception as e:
         st.write(e)
-    yes = data
+    try:
+        yes = data
+    except:
+        yes=retry('https://www.fotmob.com/api/matches',{'date': z},headers)
     #yes=json.loads(response.text)
 
     a = yes["leagues"]
