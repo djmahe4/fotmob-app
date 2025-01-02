@@ -16,9 +16,24 @@ import json
 # from operations import url_extract
 from bs4 import BeautifulSoup
 import streamlit as st
-from operations import retry
+#from operations import retry
 
-
+def retry(url,params):
+    headers = {
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'priority': 'u=1, i',
+    'referer': 'https://www.fotmob.com/',
+    'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjUwMTAyIiwiY29kZSI6MTczNTc5MDk2NzU5MywiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjZCMTM3NDdBNjU0OEI4OUFERkM2RjgzODUyRjNCNjlEIn0=',
+    }
+    return requests.get(url,params=params,headers=headers).json()
 def plot_biorhythm_chart(combined_points, dates, name, st, cycle_label="Combined"):
     """Plots the biorhythm chart with dates using matplotlib.pyplot."""
 
