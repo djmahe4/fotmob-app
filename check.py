@@ -9,14 +9,13 @@ import time
 from operations import retry
 
 def new_plot_funct(b,desired,name,season):
-    st.write(desired)
     present=[]
     necessary=[]
     for i in b[:-1]:
         print(i['title'])
         for items in i["items"]:
             present.append(items["title"])
-            st.write(items['title'],st.session_state.pposition)
+            #st.write(items['title'],st.session_state.pposition)
             if items["title"] in desired[st.session_state.pposition]:
                 necessary.append(items)
                 print(items["title"])
