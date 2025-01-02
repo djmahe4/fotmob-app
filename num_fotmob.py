@@ -16,6 +16,7 @@ import json
 # from operations import url_extract
 from bs4 import BeautifulSoup
 import streamlit as st
+from operations import retry
 
 
 def plot_biorhythm_chart(combined_points, dates, name, st, cycle_label="Combined"):
@@ -76,7 +77,10 @@ def birth_get(id="4534613"):
     #st.write(gem)
     # print(gem.keys())
     response = requests.get('https://www.fotmob.com/api/matchDetails', params=params,headers=headers)
-    gem = response.json()
+    try:
+        gem = response.json()
+    except:
+        gem=retry('https://www.fotmob.com/api/matchDetails',params)
     #st.write(gem)
     # gem=json.loads(response.text)
     # gem=url_extract(params,'https://www.fotmob.com/api/matchDetails?',headers)
