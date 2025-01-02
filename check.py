@@ -282,6 +282,8 @@ def get_season_stats(name,id=1083323,season="LaLiga"):
 def season_comparison_destruct():
     st.session_state.atype1 = None
     st.session_state.atype2 = None
+    st.session_state.pposition=None
+    st.session_state.per90=None
 def season_comparison(id):
     if "atype1" not in st.session_state:
         st.session_state.atype1=None
