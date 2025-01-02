@@ -350,18 +350,18 @@ def main():
             if st.button("Position"):
                 if pos!=st.session_state.pposition:
                         st.session_state.pposition=pos
-                else:
-                        st.session_state.pposition=pos
-                st.write(f"Selected position:{st.session_state.pposition}")
+            else:
+                st.session_state.pposition=pos
+            st.write(f"Selected position:{st.session_state.pposition}")
             if st.session_state.pposition:
                 p9=st.selectbox("Per90?",[True,False])
                 if st.button("p90"):
                         if p9 != st.session_state.per90:
                                 st.session_state.per90=p9
-                        else:
-                                st.session_state.per90=p9
-                        st.write(f"Per90:{st.session_state.per90}")
-                        st.session_state.indivs=True
+                else:
+                        st.session_state.per90=p9
+                st.write(f"Per90:{st.session_state.per90}")
+                st.session_state.indivs=True
             st.warning("please click 'Finished1' if u want to change options")
             if st.session_state.indivs:
                 get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
