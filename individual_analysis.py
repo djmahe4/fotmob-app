@@ -239,12 +239,24 @@ def main():
     if st.button("Continue"):
         st.session_state.choice2=choice2
     if st.session_state.choice2=="Individual Season Stats":
+        if "pposition" not in st.session_state:
+            st.session_state.pposition=None
+        if "per90" not in st.session_state:
+            st.session_state.per90=False
         #st.write(st.session_state)
         #get_data_destruct()
         a=get_data("player")
         st.write(a)
         #st.write(st.session_state)
         if st.session_state.returned:
+            pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
+            if pos!=st.session_state.pposition:
+                st.session_state.pposition=pos
+    #st.button('position',on_click=handle_pos,args=[pos])
+    #with col2:
+            p9=st.selectbox("Per90?",[True,False])
+            if p9 != st.session_state.per90:
+                st.session_state.per90=p9
             st.warning("please click 'Finished1' if u want to change options")
             get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
