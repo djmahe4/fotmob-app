@@ -189,6 +189,7 @@ def get_data_destruct():
     st.session_state.opt4 = None
     st.session_state.players = {}
     st.session_state.returned = {}
+    st.session_state.select=False
 def get_data(type): # player, season, team
     headers = {
         'sec-ch-ua-platform': '"Windows"',
@@ -340,6 +341,8 @@ def main():
             st.session_state.per90=False
         if "indivs" not in st.session_state:
             st.session_state.indivs=False
+        if 'select' not in st.session_state:
+            st.session_state.select=None
         pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
         if st.button("Position"):
             st.session_state.pposition=pos
@@ -350,11 +353,12 @@ def main():
                    st.session_state.per90=p9
                    st.write(f"Per90:{st.session_state.per90}")
                    st.session_state.indivs=True
+                   st.session_state.select=True
             st.warning("please click 'Finished1' if u want to change options")
         #st.write(st.session_state)
         #get_data_destruct()
       
-        if not st.session_state.returned:
+        if not st.session_state.returned and st.session_state.select:
             a=get_data("player")
             st.write(a)
         #st.write(st.session_state)
