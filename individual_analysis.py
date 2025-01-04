@@ -202,7 +202,7 @@ def get_data(type): # player, season, team
 
     params = {
         'locale': 'en',
-        'country': st.session_state.get('ccode3', ''),
+        #'country': st.session_state.get('ccode3', ''),
     }
 
     # Initialize session state variables if they are not already set
