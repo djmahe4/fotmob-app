@@ -230,6 +230,7 @@ def get_data(type): # player, season, team
     # Select league nation if opt1 is None
     if st.session_state.opt1 is None and st.session_state.leagues =={}:
         nations = ["international"]
+        requests.get("https://www.fotmob.com",params=params)
         try:
             response = requests.get('https://www.fotmob.com/api/allLeagues', params=params, headers=headers)
             ext=response.json()
