@@ -401,6 +401,10 @@ def main():
         if 'select' not in st.session_state:
             #st.session_state.select=None
             st.session_state.select=False
+        if "atype1" not in st.session_state:
+            st.session_state.atype1=None
+        if "atype2" not in st.session_state:
+            st.session_state.atype2=None
         pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
         if st.button("Position"):
             st.session_state.pposition=pos
