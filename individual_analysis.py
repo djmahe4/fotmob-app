@@ -2,6 +2,61 @@ import streamlit as st
 import requests,json
 from check import get_season_stats,season_comparison,get_season_stats_destruct,season_comparison_destruct
 from operations import retry
+comp = {
+        "Goals per 90": "Assists",
+        "Expected goals (xG)": "Goals per 90",
+        "Big chances created": "Assists",
+        "Successful dribbles per 90": "Goals + Assists",
+        "Clean sheets": "Save percentage",
+        "Interceptions per 90": "Possession won final 3rd per 90",
+        "Expected goals (xG) per 90": "Goals per 90",
+        "Shots on target per 90": "Goals per 90",
+        "Shots per 90": "Expected goals (xG)",
+        "Accurate passes per 90": "Assists",
+        "Big chances missed": "Goals per 90",
+        "Penalties won": "Goals per 90",
+        # "Successful tackles per 90": "Interceptions per 90",
+        "Clearances per 90": "Blocks per 90",
+        "Goals conceded per 90": "Clean sheets",
+        "Fouls committed per 90": "Red cards",
+        # "Expected goals (xG)": "Assists",
+        "Accurate long balls per 90": "Assists",
+        "Expected assist (xA)": "Assists",
+        "xG + xA per 90": "Goals + Assists",
+        # "Successful dribbles per 90": "Chances created",
+        "Successful tackles per 90": "Blocks per 90",
+        "Save percentage": "Goals prevented",
+        # "Fouls committed per 90": "Yellow cards",
+        "Possession won final 3rd per 90": "Goals per 90"
+    }
+comments = [
+        "Analyzes the relationship between scoring and assisting.",
+        "Compares expected goals with actual goals scored.",
+        "Understands how creating chances translates to assists.",
+        "Analyzes the impact of dribbling on direct goal contributions.",
+        "Evaluates the goalkeeper's performance.",
+        "Assesses defensive effectiveness in the final third.",
+        "Evaluates the efficiency of a player in scoring compared to the expected rate.",
+        "Sees how shots on target correlate with actual goals scored.",
+        "Analyzes the quality of shots taken.",
+        "Determines the impact of passing accuracy on creating goal opportunities.",
+        "Understands the impact of missed opportunities on a player's goal tally.",
+        "Assesses the contribution of penalties won to the total number of goals.",
+        # "Compares defensive actions and their frequency.",
+        "Evaluates different aspects of defensive play.",
+        "Observes the relationship between the frequency of conceding goals and keeping clean sheets.",
+        "Explores the severity of fouls and their consequences.",
+        # "Explores the relationship between xG and assists.",
+        "Analyzes the impact of accurate long balls on assists.",
+        "Assesses the contribution of xA to assists.",
+        "Evaluates the efficiency of xG and xA combined.",
+        # "Analyzes the impact of successful dribbles on creating chances.",
+        "Assesses defensive contributions to preventing goals.",
+        "Evaluates the goalkeeper's impact on preventing goals.",
+        # "Explores disciplinary actions related to fouls.",
+        "Explores the impact of winning possession in the final third on scoring."
+    ]
+    
 
 desired = {
         "Goalkeeper": [
@@ -332,7 +387,7 @@ def get_data(type): # player, season, team
                 return st.session_state.returned
             #st.session_state.players=squad_extract(st.session_state.teams[st.session_state.opt3])
 def main():
-    global desired
+    global desired,comp,comments
     choice2=st.selectbox("Choose:",["Individual Season Stats","Season Stats Comparison","Player v Player comparison"])
     if st.button("Continue"):
         st.session_state.choice2=choice2
@@ -376,8 +431,14 @@ def main():
     elif st.session_state.choice2=="Season Stats Comparison":
         if st.session_state.opt4:
             get_data_destruct()
+        keyvals=[x+" vs "+comp[x] for x in comp]
+        if st.session_state.atype1 is None:
+                atype=st.radio("Select analysis type",keyvals,captions=comments)
+        if st.button("Analysis selected!"):
+            st.session_state.atype1=atype.split(" vs ")[0]
+            st.session_state.atype2 = atype.split(" vs ")[1]
         #get_season_stats_destruct()
-        if not st.session_state.returned:
+        if not st.session_state.returned and st.session_state.atype1:
             b=get_data("league")
             st.write(b)
         st.write(st.session_state)
