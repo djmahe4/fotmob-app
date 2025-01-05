@@ -7,9 +7,8 @@ import requests
 import numpy as np
 import shutil
 from datetime import date
-#import urllib.request 
+import urllib
 import http.client
-from urllib.parse import urlparse
 import http.cookiejar
 from num_fotmob import extraction
 #import streamlit as st
