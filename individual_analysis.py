@@ -155,7 +155,7 @@ def squad_extract(id):
 def season_team_extract(id):
     headers = {
     'sec-ch-ua-platform': '"Windows"',
-    'Referer': 'https://www.fotmob.com/leagues/42/overview/champions-league',
+    'Referer': 'https://www.fotmob.com/',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
     'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbGVhZ3Vlcz9pZD00MiZjY29kZTM9SU5EJm5ld1VlZmFCcmFja2V0PXRydWUiLCJjb2RlIjoxNzM1NDA2NTQzOTYzLCJmb28iOiJlOTZiNjBhMjEifSwic2lnbmF0dXJlIjoiNTk1MUEwRTIwRDE1NjFFQkE5OTgyRjk2RTdFMTRFNDIifQ==',
     'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
@@ -164,8 +164,8 @@ def season_team_extract(id):
 
     params = {
         'id': f'{id}',
-        'ccode3': f'{st.session_state.ccode3.split("_")[0]}',
-         'newUefaBracket': 'true',
+        'ccode3': f'{st.session_state.ccode3}',
+         #'newUefaBracket': 'true',
     }
     st.write(params)
 
