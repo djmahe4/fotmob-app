@@ -30,21 +30,30 @@ def retry(url,params):
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
     'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjUwMTAyIiwiY29kZSI6MTczNTc5MDk2NzU5MywiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjZCMTM3NDdBNjU0OEI4OUFERkM2RjgzODUyRjNCNjlEIn0=',
     }
-    return requests.get(url,params=params,headers=headers).json()
-def url_extract(params="",uri="",headers=""):
+    try:
+        return requests.get(url,params=params,headers=headers).json()
+    except:
+        return url_extract(params,url)
+def url_extract(params={"id":"42","ccode3":"USA_OR"},uri="https://www.fotmob.com/api/leagues"):
     # Create a cookie jar to store cookies 
     #cookie_jar = http.cookiejar.CookieJar() # Define the opener to handle cookies 
     #opener =urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar))
     params = urllib.parse.urlencode(params)
     url = f'{uri}?{params}'
 # Create a request object
-    request = urllib.request.Request(url, headers=headers)
-
-# Make the request and handle the response
-    with urllib.request.urlopen(request) as response:
-        response_data = response.read().decode('utf-8')
-        data = json.loads(response_data)
-        return data
+    conn = http.client.HTTPSConnection('www.fotmob.com')
+    headers = {
+    'sec-ch-ua-platform': '"Windows"',
+    'Referer': 'https://www.fotmob.com/',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbGVhZ3Vlcz9pZD00MiZjY29kZTM9SU5EJm5ld1VlZmFCcmFja2V0PXRydWUiLCJjb2RlIjoxNzM2MDUzNDQzNDc0LCJmb28iOiJhODBhZDM3NjMifSwic2lnbmF0dXJlIjoiMzhGOEE3NjJBQTIzN0M2MUNBRjcxMkEyNUY4NUI2NEMifQ==',
+    'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+}
+    conn.request('GET', url.split('www.fotmob.com')[-1], headers=headers)
+    response = conn.getresponse()
+    data=json.loads(response.read().decode('utf-8'))
+    return data
 
 def assesment(dict,vs):
     for x in dict:
