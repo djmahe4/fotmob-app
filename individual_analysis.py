@@ -399,8 +399,8 @@ def main():
         if "indivs" not in st.session_state:
             st.session_state.indivs=False
         if 'select' not in st.session_state:
-            #st.session_state.select=None
-            st.session_state.select=False
+            st.session_state.select=None
+            #st.session_state.select=False
         pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
         if st.button("Position"):
             st.session_state.pposition=pos
@@ -434,6 +434,9 @@ def main():
             st.session_state.atype1=None
         if "atype2" not in st.session_state:
             st.session_state.atype2=None
+        if 'select' not in st.session_state:
+            st.session_state.select=None
+            #st.session_state.select=False
         if st.session_state.opt4:
             get_data_destruct()
         keyvals=[x+" vs "+comp[x] for x in comp]
