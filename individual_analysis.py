@@ -164,9 +164,10 @@ def season_team_extract(id):
 
     params = {
         'id': f'{id}',
-        'ccode3': f'{st.session_state.ccode3}',
-         #'newUefaBracket': 'true',
+        'ccode3': f'{st.session_state.ccode3.split("_")[0]}',
+         'newUefaBracket': 'true',
     }
+    st.write(params)
 
     response = requests.get('https://www.fotmob.com/api/leagues', params=params, headers=headers)
     try:
