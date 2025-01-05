@@ -399,7 +399,8 @@ def main():
         if "indivs" not in st.session_state:
             st.session_state.indivs=False
         if 'select' not in st.session_state:
-            st.session_state.select=None
+            #st.session_state.select=None
+            st.session_state.select=False
         pos=st.selectbox("Choose position to analyse:",list(desired.keys()))
         if st.button("Position"):
             st.session_state.pposition=pos
