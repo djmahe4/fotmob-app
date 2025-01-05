@@ -352,76 +352,74 @@ def season_comparison(id):
         # "Explores disciplinary actions related to fouls.",
         "Explores the impact of winning possession in the final third on scoring."
     ]
-    keyvals=[x+" vs "+comp[x] for x in comp]
-    if st.session_state.atype1 is None:
-        atype=st.radio("Select analysis type",keyvals,captions=comments)
-        if st.button("Analysis selected!"):
-            st.session_state.atype1=atype.split(" vs ")[0]
-            st.session_state.atype2 = atype.split(" vs ")[1]
-            stat1=st.session_state.atype1
-            stat2=st.session_state.atype2
+    #keyvals=[x+" vs "+comp[x] for x in comp]
+    #st.session_state.atype1=atype.split(" vs ")[0]
+    #st.session_state.atype2 = atype.split(" vs ")[1]
+    stat1=st.session_state.atype1
+    stat2=st.session_state.atype2
             # Get the data
-            data1 = requests.get(di[stat1]).json()["TopLists"][0]["StatList"]
-            data2 = requests.get(di[stat2]).json()["TopLists"][0]["StatList"]
+    data1 = requests.get(di[stat1]).json()["TopLists"][0]["StatList"]
+    data2 = requests.get(di[stat2]).json()["TopLists"][0]["StatList"]
 
             # Assume the data is a list of dictionaries with 'player' and 'value' keys
             # players1 = [d['ParticipantName'] for d in data1]
             # players2 = [d['ParticipantName'] for d in data2]
-            data1_dict = {d['ParticipantName']: d['StatValue'] for d in data1}
-            data2_dict = {d['ParticipantName']: d['StatValue'] for d in data2}
+    data1_dict = {d['ParticipantName']: d['StatValue'] for d in data1}
+    data2_dict = {d['ParticipantName']: d['StatValue'] for d in data2}
             # Get all players
             # all_players = set(list(data1_dict.keys()) + list(data2_dict.keys()))
 
             # Prepare the data for scatter plot
-            players = []
+    players = []
             # stat1_values = []
             # stat2_values = []
             # Get the intersection of the two sets of players
-            common_players = list(set(list(data1_dict.keys())) & set(list(data2_dict.keys())))
+    common_players = list(set(list(data1_dict.keys())) & set(list(data2_dict.keys())))
 
             # Filter the data to include only the common players
-            stat1_values = [data1_dict[player] for player in common_players]
-            stat2_values = [data2_dict[player] for player in common_players]
+    stat1_values = [data1_dict[player] for player in common_players]
+    stat2_values = [data2_dict[player] for player in common_players]
 
             # Create a DataFrame from the data
-            df = pd.DataFrame({
+    df = pd.DataFrame({
                 'Player': common_players,
                 stat1: stat1_values,
                 stat2: stat2_values
             })
             # Sort the DataFrame by stat1 and get the top 5 players
-            top5_stat1 = df.sort_values(by=stat1, ascending=False).head(5)
+    top5_stat1 = df.sort_values(by=stat1, ascending=False).head(5)
 
             # Sort the DataFrame by stat2 and get the top 5 players
-            top5_stat2 = df.sort_values(by=stat2, ascending=False).head(5)
+    top5_stat2 = df.sort_values(by=stat2, ascending=False).head(5)
 
             # Concatenate the two dataframes
-            top5_both = pd.concat([top5_stat1, top5_stat2])
+    top5_both = pd.concat([top5_stat1, top5_stat2])
 
             # Remove duplicates
-            top5_both = top5_both.drop_duplicates()
+    top5_both = top5_both.drop_duplicates()
 
             # Reset index
-            top5_both = top5_both.reset_index(drop=True)
-            print(top5_both)
-            st.dataframe(top5_both)
+    top5_both = top5_both.reset_index(drop=True)
+    print(top5_both)
+    st.dataframe(top5_both)
             #tname = input("Enter league name:")
             # feedback = f"This a dataframe: {top5_both} ;it contains season wise comparison of {stat1} vs {stat2}. Make a twitter thread analysing both the stats (of current season), both critical and optimistic and human type."
 
-            palette = sns.color_palette("bright", 3)
-            color1, color2, color3 = random.sample(palette, 3)
+    palette = sns.color_palette("bright", 3)
+    color1, color2, color3 = random.sample(palette, 3)
             # Create the scatterplot with seaborn
-            plt.figure(figsize=(10, 6))
-            sns.scatterplot(data=df, x=stat1, y=stat2, palette='hls')  # hls
-            sns.set_style("whitegrid")
-            plt.title(f'{list(st.session_state.returned.keys())[0]} {stat1} vs {stat2}', fontsize=14, color=color1)
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(data=df, x=stat1, y=stat2, palette='hls')  # hls
+    sns.set_style("whitegrid")
+    plt.title(f'{list(st.session_state.returned.keys())[0]} {stat1} vs {stat2}', fontsize=14, color=color1)
             # Add an annotation
-            plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
-            fontsize=12, ha='left', va='bottom', alpha=0.4)
-            plt.xlabel(stat1, fontsize=12, color=color2)
-            plt.ylabel(stat2, fontsize=12, color=color3)
-            for i, player in enumerate(common_players):
-                plt.annotate(player, (stat1_values[i], stat2_values[i]))
+    plt.annotate('@DJMahe04', xy=(0.1, 0.1), xycoords='axes fraction',  # Position in axes coordinates
+    fontsize=12, ha='left', va='bottom', alpha=0.4)
+    plt.xlabel(stat1, fontsize=12, color=color2)
+    plt.ylabel(stat2, fontsize=12, color=color3)
+    for i, player in enumerate(common_players):
+        plt.annotate(player, (stat1_values[i], stat2_values[i]))
             # Avoid overlapping
-            plt.tight_layout()
-            st.pyplot(plt)
+    plt.tight_layout()
+    st.pyplot(plt)
+            
