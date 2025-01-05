@@ -437,13 +437,15 @@ def main():
         if st.button("Analysis selected!"):
             st.session_state.atype1=atype.split(" vs ")[0]
             st.session_state.atype2 = atype.split(" vs ")[1]
+            st.session_state.select=True
         #get_season_stats_destruct()
-        if not st.session_state.returned and st.session_state.atype1:
+        if not st.session_state.returned and st.session_state.select:
             b=get_data("league")
             st.write(b)
         st.write(st.session_state)
         #st.write(st.session_state)
         if st.session_state.returned:
+            st.session_state.select=False
             st.warning("please click 'Finished2' if u want to change options")
             season_comparison(list(st.session_state.returned.values())[0])
         if st.button("Finished2"):
