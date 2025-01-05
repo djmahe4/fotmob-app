@@ -259,10 +259,6 @@ def season_comparison_destruct():
     st.session_state.pposition=None
     st.session_state.per90=None
 def season_comparison(id):
-    if "atype1" not in st.session_state:
-        st.session_state.atype1=None
-    if "atype2" not in st.session_state:
-        st.session_state.atype2=None
     headers = {
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9,en-IN;q=0.8',
