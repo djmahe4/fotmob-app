@@ -368,7 +368,7 @@ def main():
             if st.session_state.indivs:
                 get_season_stats(list(st.session_state.returned.keys())[0],list(st.session_state.returned.values())[0],st.session_state.opt2)
             #get_data_destruct()
-            if st.button("Finished1"):
+        if st.button("Finished1"):
                 season_comparison_destruct()
                 get_season_stats_destruct()
                 get_data_destruct()
