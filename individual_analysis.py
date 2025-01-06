@@ -291,6 +291,7 @@ def get_data(type): # player, season, team
             response = requests.get('https://www.fotmob.com/api/allLeagues', params=params, headers=headers)
             ext=response.json()
         except:
+            params.update({'country': st.session_state.get('ccode3', '')})
             ext=retry('https://www.fotmob.com/api/allLeagues',params)
         for country in ext.get('countries', []):
             nations.append(country['name'])
