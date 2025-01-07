@@ -208,20 +208,26 @@ def squad_extract(id):
             players.update({j['name']: j['id']})
     return players
 def season_team_extract(id):
-    requests.get("https://www.fotmob.com/leagues/42/overview/champions-league")
+    #requests.get("https://www.fotmob.com/leagues/42/overview/champions-league")
     headers = {
-    'sec-ch-ua-platform': '"Windows"',
-    'Referer': 'https://www.fotmob.com/leagues/42/overview/champions-league',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbGVhZ3Vlcz9pZD00MiZjY29kZTM9SU5EJm5ld1VlZmFCcmFja2V0PXRydWUiLCJjb2RlIjoxNzM2MjU1MDE3OTUwLCJmb28iOiJhNDFmYzFhNzAifSwic2lnbmF0dXJlIjoiNDBFQzY4MjQ1MUY2OEYzNUUzNTk3ODU1MDBFNjYwNjIifQ==',
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'priority': 'u=1, i',
+    'referer': 'https://www.fotmob.com/leagues/42/overview/champions-league',
     'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
     'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbGVhZ3Vlcz9pZD00MiZuZXdVZWZhQnJhY2tldD10cnVlIiwiY29kZSI6MTczNjI1NTM5ODMyMCwiZm9vIjoiYTQxZmMxYTcwIn0sInNpZ25hdHVyZSI6IjI5N0M5MTc2MTI1NjZBNkVDNzE5MTFBQTQ4OTQyNDc1In0=',
 }
 
 
     params = {
         'id': f'{id}',
-        'ccode3': f'{st.session_state.ccode3}',
+        #'ccode3': f'{st.session_state.ccode3}',
          'newUefaBracket': 'true',
     }
     st.write(params)
