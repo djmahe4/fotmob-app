@@ -208,6 +208,7 @@ def squad_extract(id):
             players.update({j['name']: j['id']})
     return players
 def season_team_extract(id):
+    requests.get("https://www.fotmob.com/leagues/42/overview/champions-league")
     headers = {
     'sec-ch-ua-platform': '"Windows"',
     'Referer': 'https://www.fotmob.com/leagues/42/overview/champions-league',
