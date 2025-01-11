@@ -278,7 +278,8 @@ def season_comparison(id):
 
     params = {
         'id': f'{id}',
-        'ccode3': f'{st.session_state.ccode3}',
+        #'ccode3': f'{st.session_state.ccode3}',
+        'newUefaBracket': 'true',
     }
 
     response = requests.get('https://www.fotmob.com/api/leagues', params=params, headers=headers)
