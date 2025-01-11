@@ -27,7 +27,7 @@ def retry(url,params):
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-    'x-mas': 'eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hlcz9kYXRlPTIwMjUwMTAyIiwiY29kZSI6MTczNTc5MDk2NzU5MywiZm9vIjoiZTk2YjYwYTIxIn0sInNpZ25hdHVyZSI6IjZCMTM3NDdBNjU0OEI4OUFERkM2RjgzODUyRjNCNjlEIn0=',
+    'x-mas': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NzgxZWQ3MWExNDdhZWI0ODYxNmNiYWIiLCJuYmYiOjE3MzY1NjgxNzcsImV4cCI6MTczOTE5NjE3NywiaWF0IjoxNzM2NTY4MTc3LCJpc3MiOiJXU0MifQ.BFQtbgESVzCWc002Hk_kPvuv4u3y_c7-vEDibACoVoA=',
     }
     try:
         return requests.get(url,params=params,headers=headers).json()
